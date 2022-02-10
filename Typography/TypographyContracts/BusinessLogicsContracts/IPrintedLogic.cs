@@ -3,7 +3,7 @@ using TypographyContracts.ViewModels;
 using System.Collections.Generic;
 
 namespace TypographyContracts.BusinessLogicsContracts {
-    public interface IProductLogic {
+    public interface IPrintedLogic {
         List<PrintedViewModel> Read(PrintedBindingModel model);
         void CreateOrUpdate(PrintedBindingModel model);
         void Delete(PrintedBindingModel model);
