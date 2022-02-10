@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="BusinessLogicContacts\" />
     <Folder Include="StoragesContects\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>
