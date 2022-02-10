@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace TypographyContracts.BindingModels {
+namespace TypographyListImplement.Models {
     // Изделие, изготавливаемое в магазине
-    public class PrintedBindingModel {
-        public int? Id { get; set; }
+    public class Printed {        
+        public int Id { get; set; }
         public string PrintedName { get; set; }
         public decimal Price { get; set; }
-        public Dictionary<int, (string, int)> PrintedComponents { get; set; }
+        public Dictionary<int, int> PrintedComponents { get; set; }
     }
 }

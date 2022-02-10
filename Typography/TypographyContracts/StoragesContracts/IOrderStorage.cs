@@ -2,8 +2,8 @@
 using TypographyContracts.ViewModels;
 using System.Collections.Generic;
 
-namespace TypographyContracts.StoragesContects {
-    interface IOrderStorage {
+namespace TypographyContracts.StoragesContracts {
+    public interface IOrderStorage {
         List<OrderViewModel> GetFullList();
         List<OrderViewModel> GetFilteredList(OrderBindingModel model);
         OrderViewModel GetElement(OrderBindingModel model);

@@ -3,7 +3,7 @@ using System;
 
 namespace TypographyContracts.ViewModels {
     // Заказ
-    class OrderViewModel {
+    public class OrderViewModel {
         public int Id { get; set; }
         public int PrintedId { get; set; }
 

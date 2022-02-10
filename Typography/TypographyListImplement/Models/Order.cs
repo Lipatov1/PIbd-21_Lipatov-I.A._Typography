@@ -1,10 +1,10 @@
 ﻿using TypographyContracts.Enums;
 using System;
 
-namespace TypographyContracts.BindingModels {
+namespace TypographyListImplement.Models {
     // Заказ
-    public class OrderBindingModel {
-        public int? Id { get; set; }
+    public class Order {
+        public int Id { get; set; }
         public int PrintedId { get; set; }
         public int Count { get; set; }
         public decimal Sum { get; set; }

@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace TypographyContracts.ViewModels {
     // Изделие, изготавливаемое в магазине
-    class PrintedViewModel {
+    public class PrintedViewModel {
         public int Id { get; set; }
 
         [DisplayName("Название изделия")]

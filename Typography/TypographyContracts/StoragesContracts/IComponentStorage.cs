@@ -2,8 +2,8 @@
 using TypographyContracts.ViewModels;
 using System.Collections.Generic;
 
-namespace TypographyContracts.StoragesContects {
-    interface IComponentStorage {
+namespace TypographyContracts.StoragesContracts {
+    public interface IComponentStorage {
         List<ComponentViewModel> GetFullList();
         List<ComponentViewModel> GetFilteredList(ComponentBindingModel model);
         ComponentViewModel GetElement(ComponentBindingModel model);

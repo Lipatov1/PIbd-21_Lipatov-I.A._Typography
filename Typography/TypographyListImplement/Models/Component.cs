@@ -1,11 +1,7 @@
-﻿using System.ComponentModel;
-
-namespace TypographyContracts.ViewModels {
+﻿namespace TypographyListImplement.Models {
     // Компонент, требуемый для изготовления изделия
-    public class ComponentViewModel {
+    public class Component {
         public int Id { get; set; }
-
-        [DisplayName("Название компонента")]
         public string ComponentName { get; set; }
     }
 }

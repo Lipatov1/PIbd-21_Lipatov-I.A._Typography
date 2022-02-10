@@ -2,8 +2,8 @@
 using TypographyContracts.ViewModels;
 using System.Collections.Generic;
 
-namespace TypographyContracts.StoragesContects {
-    interface IPrintedStorage {
+namespace TypographyContracts.StoragesContracts {
+    public interface IPrintedStorage {
         List<PrintedViewModel> GetFullList();
         List<PrintedViewModel> GetFilteredList(PrintedBindingModel model);
         PrintedViewModel GetElement(PrintedBindingModel model);
