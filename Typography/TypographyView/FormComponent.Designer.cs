@@ -82,6 +82,7 @@ namespace TypographyView
             this.Controls.Add(this.LabelName);
             this.Name = "FormComponent";
             this.Text = "Компонент";
+            this.Load += new System.EventHandler(this.FormComponent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

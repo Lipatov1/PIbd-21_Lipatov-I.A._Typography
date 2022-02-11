@@ -34,11 +34,14 @@ namespace TypographyView
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.groupBoxComponents = new System.Windows.Forms.GroupBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.ColumnComponentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComponentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.ButtonAdd = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBoxComponents.SuspendLayout();
@@ -79,17 +82,55 @@ namespace TypographyView
             // 
             // groupBoxComponents
             // 
+            this.groupBoxComponents.Controls.Add(this.dataGridView);
             this.groupBoxComponents.Controls.Add(this.button4);
             this.groupBoxComponents.Controls.Add(this.button3);
             this.groupBoxComponents.Controls.Add(this.button2);
             this.groupBoxComponents.Controls.Add(this.ButtonAdd);
-            this.groupBoxComponents.Controls.Add(this.dataGridView);
             this.groupBoxComponents.Location = new System.Drawing.Point(12, 70);
             this.groupBoxComponents.Name = "groupBoxComponents";
             this.groupBoxComponents.Size = new System.Drawing.Size(537, 329);
             this.groupBoxComponents.TabIndex = 4;
             this.groupBoxComponents.TabStop = false;
             this.groupBoxComponents.Text = "Компоненты";
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnComponentId,
+            this.ColumnComponentName,
+            this.ColumnCount});
+            this.dataGridView.Location = new System.Drawing.Point(15, 22);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.RowHeadersVisible = false;
+            this.dataGridView.RowTemplate.Height = 25;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(399, 301);
+            this.dataGridView.TabIndex = 5;
+            // 
+            // ColumnComponentId
+            // 
+            this.ColumnComponentId.HeaderText = "КомпонентID";
+            this.ColumnComponentId.Name = "ColumnComponentId";
+            this.ColumnComponentId.ReadOnly = true;
+            this.ColumnComponentId.Visible = false;
+            // 
+            // ColumnComponentName
+            // 
+            this.ColumnComponentName.HeaderText = "Компонент";
+            this.ColumnComponentName.Name = "ColumnComponentName";
+            this.ColumnComponentName.ReadOnly = true;
+            // 
+            // ColumnCount
+            // 
+            this.ColumnCount.HeaderText = "Количество";
+            this.ColumnCount.Name = "ColumnCount";
+            this.ColumnCount.ReadOnly = true;
             // 
             // button4
             // 
@@ -131,15 +172,6 @@ namespace TypographyView
             this.ButtonAdd.UseVisualStyleBackColor = true;
             this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
-            // dataGridView
-            // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(6, 22);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 25;
-            this.dataGridView.Size = new System.Drawing.Size(401, 301);
-            this.dataGridView.TabIndex = 0;
-            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(366, 405);
@@ -174,6 +206,7 @@ namespace TypographyView
             this.Controls.Add(this.labelName);
             this.Name = "FormPrinted";
             this.Text = "Изделие";
+            this.Load += new System.EventHandler(this.FormPrinted_Load);
             this.groupBoxComponents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -192,8 +225,11 @@ namespace TypographyView
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button ButtonAdd;
-        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComponentId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComponentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCount;
     }
 }

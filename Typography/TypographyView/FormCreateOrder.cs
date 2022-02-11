@@ -1,6 +1,7 @@
 ﻿using TypographyContracts.BusinessLogicsContracts;
 using TypographyContracts.BindingModels;
 using TypographyContracts.ViewModels;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System;
 
@@ -16,7 +17,19 @@ namespace TypographyView {
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e) {
-            // прописать логику
+            try {
+                List<PrintedViewModel> list = _logicP.Read(null);
+
+                if (list != null) {
+                    comboBoxPrinted.DisplayMember = "PackageName";
+                    comboBoxPrinted.ValueMember = "Id";
+                    comboBoxPrinted.DataSource = list;
+                    comboBoxPrinted.SelectedItem = null;
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CalcSum() {

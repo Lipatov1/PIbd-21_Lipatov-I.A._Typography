@@ -7,7 +7,7 @@ using System.Linq;
 using System;
 
 namespace TypographyListImplement.Implements {
-    class PrintedStorage : IPrintedStorage {
+    public class PrintedStorage : IPrintedStorage {
         private readonly DataListSingleton source;
 
         public PrintedStorage() {

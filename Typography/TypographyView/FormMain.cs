@@ -20,7 +20,12 @@ namespace TypographyView {
         private void LoadData() {
             try {
                 var list = _orderLogic.Read(null);
-                // прописать логику
+
+                if (list != null) {
+                    dataGridView.DataSource = list;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                }
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
