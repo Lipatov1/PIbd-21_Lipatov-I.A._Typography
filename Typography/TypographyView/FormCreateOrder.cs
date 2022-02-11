@@ -21,7 +21,7 @@ namespace TypographyView {
                 List<PrintedViewModel> list = _logicP.Read(null);
 
                 if (list != null) {
-                    comboBoxPrinted.DisplayMember = "PackageName";
+                    comboBoxPrinted.DisplayMember = "PrintedName";
                     comboBoxPrinted.ValueMember = "Id";
                     comboBoxPrinted.DataSource = list;
                     comboBoxPrinted.SelectedItem = null;
@@ -63,7 +63,7 @@ namespace TypographyView {
             }
 
             if (comboBoxPrinted.SelectedValue == null) {
-                MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите печатную продукцию", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }

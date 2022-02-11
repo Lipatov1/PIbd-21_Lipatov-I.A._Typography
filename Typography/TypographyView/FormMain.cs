@@ -37,6 +37,11 @@ namespace TypographyView {
             form.ShowDialog();
         }
 
+        private void печатныеПродукцииToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormPrinteds>();
+            form.ShowDialog();
+        }
+
         private void ИзделияToolStripMenuItem_Click(object sender, EventArgs e) {
             var form = Program.Container.Resolve<FormPrinted>();
             form.ShowDialog();

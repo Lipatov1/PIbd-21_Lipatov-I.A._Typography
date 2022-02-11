@@ -73,6 +73,7 @@ namespace TypographyView
             this.comboBoxPrinted.Name = "comboBoxPrinted";
             this.comboBoxPrinted.Size = new System.Drawing.Size(220, 23);
             this.comboBoxPrinted.TabIndex = 3;
+            this.comboBoxPrinted.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPrinted_SelectedIndexChanged);
             // 
             // textBoxCount
             // 
@@ -80,6 +81,7 @@ namespace TypographyView
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(220, 23);
             this.textBoxCount.TabIndex = 4;
+            this.textBoxCount.TextChanged += new System.EventHandler(this.TextBoxCount_TextChanged);
             // 
             // textBoxSum
             // 
