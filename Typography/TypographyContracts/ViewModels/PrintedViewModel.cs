@@ -2,7 +2,7 @@
 using System.ComponentModel;
 
 namespace TypographyContracts.ViewModels {
-    // Изделие, изготавливаемое в магазине
+    // Печатная продукция, изготавливаемая в магазине
     public class PrintedViewModel {
         public int Id { get; set; }
 

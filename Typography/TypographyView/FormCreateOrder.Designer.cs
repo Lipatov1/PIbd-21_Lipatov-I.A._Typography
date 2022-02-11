@@ -44,9 +44,9 @@ namespace TypographyView
             this.labelPrinted.AutoSize = true;
             this.labelPrinted.Location = new System.Drawing.Point(12, 15);
             this.labelPrinted.Name = "labelPrinted";
-            this.labelPrinted.Size = new System.Drawing.Size(56, 15);
+            this.labelPrinted.Size = new System.Drawing.Size(124, 15);
             this.labelPrinted.TabIndex = 0;
-            this.labelPrinted.Text = "Изделие:";
+            this.labelPrinted.Text = "Печатная продукция:";
             // 
             // labelCount
             // 
@@ -69,28 +69,28 @@ namespace TypographyView
             // comboBoxPrinted
             // 
             this.comboBoxPrinted.FormattingEnabled = true;
-            this.comboBoxPrinted.Location = new System.Drawing.Point(93, 12);
+            this.comboBoxPrinted.Location = new System.Drawing.Point(142, 12);
             this.comboBoxPrinted.Name = "comboBoxPrinted";
             this.comboBoxPrinted.Size = new System.Drawing.Size(220, 23);
             this.comboBoxPrinted.TabIndex = 3;
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(93, 41);
+            this.textBoxCount.Location = new System.Drawing.Point(142, 41);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(220, 23);
             this.textBoxCount.TabIndex = 4;
             // 
             // textBoxSum
             // 
-            this.textBoxSum.Location = new System.Drawing.Point(93, 70);
+            this.textBoxSum.Location = new System.Drawing.Point(142, 70);
             this.textBoxSum.Name = "textBoxSum";
             this.textBoxSum.Size = new System.Drawing.Size(220, 23);
             this.textBoxSum.TabIndex = 5;
             // 
             // ButtonCancel
             // 
-            this.ButtonCancel.Location = new System.Drawing.Point(228, 99);
+            this.ButtonCancel.Location = new System.Drawing.Point(277, 99);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
             this.ButtonCancel.TabIndex = 6;
@@ -100,7 +100,7 @@ namespace TypographyView
             // 
             // ButtonSave
             // 
-            this.ButtonSave.Location = new System.Drawing.Point(147, 99);
+            this.ButtonSave.Location = new System.Drawing.Point(196, 99);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(75, 23);
             this.ButtonSave.TabIndex = 7;
@@ -112,7 +112,7 @@ namespace TypographyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 134);
+            this.ClientSize = new System.Drawing.Size(376, 134);
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.textBoxSum);

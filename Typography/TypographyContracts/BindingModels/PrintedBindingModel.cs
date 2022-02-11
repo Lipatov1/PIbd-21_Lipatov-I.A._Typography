@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace TypographyContracts.BindingModels {
-    // Изделие, изготавливаемое в магазине
+    // Печатная продукция, изготавливаемая в магазине
     public class PrintedBindingModel {
         public int? Id { get; set; }
         public string PrintedName { get; set; }

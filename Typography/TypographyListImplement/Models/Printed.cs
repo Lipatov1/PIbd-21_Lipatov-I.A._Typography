@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace TypographyListImplement.Models {
-    // Изделие, изготавливаемое в магазине
+    // Печатная продукция, изготавливаемая в магазине
     public class Printed {        
         public int Id { get; set; }
         public string PrintedName { get; set; }

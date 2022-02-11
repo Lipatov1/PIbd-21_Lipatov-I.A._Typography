@@ -102,7 +102,7 @@ namespace TypographyView
             this.Controls.Add(this.comboBoxComponent);
             this.Controls.Add(this.labelComponent);
             this.Name = "FormPrintedComponent";
-            this.Text = "Компонент изделия";
+            this.Text = "Компонент печатной продукции";
             this.ResumeLayout(false);
             this.PerformLayout();
 

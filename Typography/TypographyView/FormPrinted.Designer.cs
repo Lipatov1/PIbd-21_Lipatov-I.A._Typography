@@ -205,7 +205,7 @@ namespace TypographyView
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
             this.Name = "FormPrinted";
-            this.Text = "Изделие";
+            this.Text = "Печатная продукция";
             this.Load += new System.EventHandler(this.FormPrinted_Load);
             this.groupBoxComponents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
