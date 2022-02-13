@@ -31,19 +31,19 @@ namespace TypographyView
         {
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelPrice = new System.Windows.Forms.Label();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.groupBoxComponents = new System.Windows.Forms.GroupBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ColumnComponentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnComponentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.ButtonAdd = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonRef = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
+            this.buttonUpd = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxComponents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -64,14 +64,14 @@ namespace TypographyView
             this.textBoxName.Size = new System.Drawing.Size(226, 23);
             this.textBoxName.TabIndex = 1;
             // 
-            // label1
+            // labelPrice
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Цена:";
+            this.labelPrice.AutoSize = true;
+            this.labelPrice.Location = new System.Drawing.Point(12, 44);
+            this.labelPrice.Name = "labelPrice";
+            this.labelPrice.Size = new System.Drawing.Size(38, 15);
+            this.labelPrice.TabIndex = 2;
+            this.labelPrice.Text = "Цена:";
             // 
             // textBoxPrice
             // 
@@ -83,10 +83,10 @@ namespace TypographyView
             // groupBoxComponents
             // 
             this.groupBoxComponents.Controls.Add(this.dataGridView);
-            this.groupBoxComponents.Controls.Add(this.button4);
-            this.groupBoxComponents.Controls.Add(this.button3);
-            this.groupBoxComponents.Controls.Add(this.button2);
-            this.groupBoxComponents.Controls.Add(this.ButtonAdd);
+            this.groupBoxComponents.Controls.Add(this.buttonRef);
+            this.groupBoxComponents.Controls.Add(this.buttonDel);
+            this.groupBoxComponents.Controls.Add(this.buttonUpd);
+            this.groupBoxComponents.Controls.Add(this.buttonAdd);
             this.groupBoxComponents.Location = new System.Drawing.Point(12, 70);
             this.groupBoxComponents.Name = "groupBoxComponents";
             this.groupBoxComponents.Size = new System.Drawing.Size(537, 329);
@@ -132,76 +132,76 @@ namespace TypographyView
             this.ColumnCount.Name = "ColumnCount";
             this.ColumnCount.ReadOnly = true;
             // 
-            // button4
+            // buttonRef
             // 
-            this.button4.Location = new System.Drawing.Point(435, 149);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Обновить";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.ButtonRef_Click);
+            this.buttonRef.Location = new System.Drawing.Point(435, 149);
+            this.buttonRef.Name = "buttonRef";
+            this.buttonRef.Size = new System.Drawing.Size(75, 23);
+            this.buttonRef.TabIndex = 4;
+            this.buttonRef.Text = "Обновить";
+            this.buttonRef.UseVisualStyleBackColor = true;
+            this.buttonRef.Click += new System.EventHandler(this.ButtonRef_Click);
             // 
-            // button3
+            // buttonDel
             // 
-            this.button3.Location = new System.Drawing.Point(435, 110);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Удалить";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.ButtonDel_Click);
+            this.buttonDel.Location = new System.Drawing.Point(435, 110);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(75, 23);
+            this.buttonDel.TabIndex = 3;
+            this.buttonDel.Text = "Удалить";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
-            // button2
+            // buttonUpd
             // 
-            this.button2.Location = new System.Drawing.Point(435, 71);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Изменить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ButtonUpd_Click);
+            this.buttonUpd.Location = new System.Drawing.Point(435, 71);
+            this.buttonUpd.Name = "buttonUpd";
+            this.buttonUpd.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpd.TabIndex = 2;
+            this.buttonUpd.Text = "Изменить";
+            this.buttonUpd.UseVisualStyleBackColor = true;
+            this.buttonUpd.Click += new System.EventHandler(this.ButtonUpd_Click);
             // 
-            // ButtonAdd
+            // buttonAdd
             // 
-            this.ButtonAdd.Location = new System.Drawing.Point(435, 32);
-            this.ButtonAdd.Name = "ButtonAdd";
-            this.ButtonAdd.Size = new System.Drawing.Size(75, 23);
-            this.ButtonAdd.TabIndex = 1;
-            this.ButtonAdd.Text = "Добавить";
-            this.ButtonAdd.UseVisualStyleBackColor = true;
-            this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
+            this.buttonAdd.Location = new System.Drawing.Point(435, 32);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.TabIndex = 1;
+            this.buttonAdd.Text = "Добавить";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
-            // button5
+            // buttonSave
             // 
-            this.button5.Location = new System.Drawing.Point(366, 405);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Сохранить";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.ButtonSave_Click);
+            this.buttonSave.Location = new System.Drawing.Point(366, 405);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 5;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
-            // button6
+            // buttonCancel
             // 
-            this.button6.Location = new System.Drawing.Point(447, 405);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Отмена";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.ButtonCancel_Click);
+            this.buttonCancel.Location = new System.Drawing.Point(447, 405);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 6;
+            this.buttonCancel.Text = "Отмена";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // FormPrinted
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 436);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.groupBoxComponents);
             this.Controls.Add(this.textBoxPrice);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelPrice);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
             this.Name = "FormPrinted";
@@ -218,15 +218,15 @@ namespace TypographyView
 
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelPrice;
         private System.Windows.Forms.TextBox textBoxPrice;
         private System.Windows.Forms.GroupBox groupBoxComponents;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button ButtonAdd;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonRef;
+        private System.Windows.Forms.Button buttonDel;
+        private System.Windows.Forms.Button buttonUpd;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComponentId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComponentName;

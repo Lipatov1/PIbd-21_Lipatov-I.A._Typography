@@ -30,9 +30,9 @@ namespace TypographyView
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.componentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.печатныеПродукцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PrintedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ButtonCreateOrder = new System.Windows.Forms.Button();
             this.ButtonTakeOrderInWork = new System.Windows.Forms.Button();
@@ -46,21 +46,21 @@ namespace TypographyView
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.справочникиToolStripMenuItem});
+            this.ReferencesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1001, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // справочникиToolStripMenuItem
+            // ReferencesToolStripMenuItem
             // 
-            this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ReferencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.componentsToolStripMenuItem,
-            this.печатныеПродукцииToolStripMenuItem});
-            this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-            this.справочникиToolStripMenuItem.Text = "Справочники";
+            this.PrintedsToolStripMenuItem});
+            this.ReferencesToolStripMenuItem.Name = "ReferencesToolStripMenuItem";
+            this.ReferencesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.ReferencesToolStripMenuItem.Text = "Справочники";
             // 
             // componentsToolStripMenuItem
             // 
@@ -69,12 +69,12 @@ namespace TypographyView
             this.componentsToolStripMenuItem.Text = "Компоненты";
             this.componentsToolStripMenuItem.Click += new System.EventHandler(this.ComponentsToolStripMenuItem_Click);
             // 
-            // печатныеПродукцииToolStripMenuItem
+            // PrintedsToolStripMenuItem
             // 
-            this.печатныеПродукцииToolStripMenuItem.Name = "печатныеПродукцииToolStripMenuItem";
-            this.печатныеПродукцииToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.печатныеПродукцииToolStripMenuItem.Text = "Печатная продукция";
-            this.печатныеПродукцииToolStripMenuItem.Click += new System.EventHandler(this.PrintedsToolStripMenuItem_Click);
+            this.PrintedsToolStripMenuItem.Name = "PrintedsToolStripMenuItem";
+            this.PrintedsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.PrintedsToolStripMenuItem.Text = "Печатная продукция";
+            this.PrintedsToolStripMenuItem.Click += new System.EventHandler(this.PrintedsToolStripMenuItem_Click);
             // 
             // dataGridView
             // 
@@ -169,7 +169,7 @@ namespace TypographyView
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem componentsToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button ButtonCreateOrder;
@@ -177,6 +177,6 @@ namespace TypographyView
         private System.Windows.Forms.Button ButtonOrderReady;
         private System.Windows.Forms.Button ButtonIssuedOrder;
         private System.Windows.Forms.Button ButtonRef;
-        private System.Windows.Forms.ToolStripMenuItem печатныеПродукцииToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PrintedsToolStripMenuItem;
     }
 }
