@@ -38,11 +38,17 @@ namespace TypographyBusinessLogic.BusinessLogics {
         }
 
         public void TakeOrderInWork(ChangeStatusBindingModel model) {
-            var element = orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
+            var element = orderStorage.GetElement(new OrderBindingModel {
+                Id = model.OrderId
+            });
 
-            if (element == null) throw new Exception("Элемент не найден");
-            if (!element.Status.Contains(OrderStatus.Принят.ToString()))
+            if (element == null) {
+                throw new Exception("Элемент не найден");
+            }
+
+            if (!element.Status.Contains(OrderStatus.Принят.ToString())) {
                 throw new Exception("Не в статусе \"Принят\"");
+            }
 
             orderStorage.Update(new OrderBindingModel {
                 Id = model.OrderId,
@@ -56,11 +62,17 @@ namespace TypographyBusinessLogic.BusinessLogics {
         }
 
         public void FinishOrder(ChangeStatusBindingModel model) {
-            var element = orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
+            var element = orderStorage.GetElement(new OrderBindingModel {
+                Id = model.OrderId
+            });
 
-            if (element == null) throw new Exception("Элемент не найден");
-            if (!element.Status.Contains(OrderStatus.Выполняется.ToString()))
+            if (element == null) { 
+                throw new Exception("Элемент не найден");
+            }
+
+            if (!element.Status.Contains(OrderStatus.Выполняется.ToString())) {
                 throw new Exception("Не в статусе \"Выполняется\"");
+            }
 
             orderStorage.Update(new OrderBindingModel {
                 Id = model.OrderId,
@@ -74,11 +86,17 @@ namespace TypographyBusinessLogic.BusinessLogics {
         }
 
         public void DeliveryOrder(ChangeStatusBindingModel model) {
-            var element = orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
+            var element = orderStorage.GetElement(new OrderBindingModel {
+                Id = model.OrderId
+            });
 
-            if (element == null) throw new Exception("Элемент не найден");
-            if (!element.Status.Contains(OrderStatus.Готов.ToString()))
+            if (element == null) {
+                throw new Exception("Элемент не найден");
+            }
+
+            if (!element.Status.Contains(OrderStatus.Готов.ToString())) {
                 throw new Exception("Не в статусе \"Готов\"");
+            }
 
             orderStorage.Update(new OrderBindingModel {
                 Id = model.OrderId,

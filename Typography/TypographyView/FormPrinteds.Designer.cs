@@ -102,6 +102,7 @@ namespace TypographyView
             this.Controls.Add(this.dataGridView);
             this.Name = "FormPrinteds";
             this.Text = "Печатные продукции";
+            this.Load += new System.EventHandler(this.FormPrinteds_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

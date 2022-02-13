@@ -26,10 +26,13 @@ namespace TypographyBusinessLogic.BusinessLogics {
         }
 
         public void CreateOrUpdate(PrintedBindingModel model) {
-            var element = printedStorage.GetElement(new PrintedBindingModel { PrintedName = model.PrintedName });
+            var element = printedStorage.GetElement(new PrintedBindingModel { 
+                PrintedName = model.PrintedName
+            });
 
-            if (element != null && element.Id != model.Id)
-                throw new Exception("Уже есть компонент с таким названием");
+            if (element != null && element.Id != model.Id) {
+                throw new Exception("Уже есть печатная продуция с таким названием");
+            }
 
             if (model.Id.HasValue) {
                 printedStorage.Update(model);
@@ -40,8 +43,14 @@ namespace TypographyBusinessLogic.BusinessLogics {
         }
 
         public void Delete(PrintedBindingModel model) {
-            var element = printedStorage.GetElement(new PrintedBindingModel { Id = model.Id });
-            if (element == null) throw new Exception("Элемент не найден");
+            var element = printedStorage.GetElement(new PrintedBindingModel {
+                Id = model.Id
+            });
+
+            if (element == null) {
+                throw new Exception("Элемент не найден");
+            }
+                
             printedStorage.Delete(model);
         }
     }

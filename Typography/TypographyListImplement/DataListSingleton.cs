@@ -18,6 +18,7 @@ namespace TypographyListImplement {
             if (instance == null) {
                 instance = new DataListSingleton();
             }
+
             return instance;
         }
     }

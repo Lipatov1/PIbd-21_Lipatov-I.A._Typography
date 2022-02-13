@@ -123,7 +123,7 @@ namespace TypographyListImplement.Implements {
         }
 
         private PrintedViewModel CreateModel(Printed Printed) {
-            // требуется дополнительно получить список компонентов для изделия с названиями и их количество
+            // требуется дополнительно получить список компонентов для печатной продукции с названиями и их количество
             var PrintedComponents = new Dictionary<int, (string, int)>();
 
             foreach (var pc in Printed.PrintedComponents) {

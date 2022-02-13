@@ -31,7 +31,7 @@ namespace TypographyView
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.компонентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.componentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.печатныеПродукцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ButtonCreateOrder = new System.Windows.Forms.Button();
@@ -56,25 +56,25 @@ namespace TypographyView
             // справочникиToolStripMenuItem
             // 
             this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.компонентыToolStripMenuItem,
+            this.componentsToolStripMenuItem,
             this.печатныеПродукцииToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.справочникиToolStripMenuItem.Text = "Справочники";
             // 
-            // компонентыToolStripMenuItem
+            // componentsToolStripMenuItem
             // 
-            this.компонентыToolStripMenuItem.Name = "компонентыToolStripMenuItem";
-            this.компонентыToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.компонентыToolStripMenuItem.Text = "Компоненты";
-            this.компонентыToolStripMenuItem.Click += new System.EventHandler(this.КомпонентыToolStripMenuItem_Click);
+            this.componentsToolStripMenuItem.Name = "componentsToolStripMenuItem";
+            this.componentsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.componentsToolStripMenuItem.Text = "Компоненты";
+            this.componentsToolStripMenuItem.Click += new System.EventHandler(this.ComponentsToolStripMenuItem_Click);
             // 
             // печатныеПродукцииToolStripMenuItem
             // 
             this.печатныеПродукцииToolStripMenuItem.Name = "печатныеПродукцииToolStripMenuItem";
-            this.печатныеПродукцииToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.печатныеПродукцииToolStripMenuItem.Text = "Печатные продукции";
-            this.печатныеПродукцииToolStripMenuItem.Click += new System.EventHandler(this.печатныеПродукцииToolStripMenuItem_Click);
+            this.печатныеПродукцииToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.печатныеПродукцииToolStripMenuItem.Text = "Печатная продукция";
+            this.печатныеПродукцииToolStripMenuItem.Click += new System.EventHandler(this.PrintedsToolStripMenuItem_Click);
             // 
             // dataGridView
             // 
@@ -170,7 +170,7 @@ namespace TypographyView
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem компонентыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem componentsToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button ButtonCreateOrder;
         private System.Windows.Forms.Button ButtonTakeOrderInWork;

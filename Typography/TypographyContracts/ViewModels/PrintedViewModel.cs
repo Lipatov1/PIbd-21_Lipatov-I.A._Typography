@@ -6,7 +6,7 @@ namespace TypographyContracts.ViewModels {
     public class PrintedViewModel {
         public int Id { get; set; }
 
-        [DisplayName("Название изделия")]
+        [DisplayName("Название печатной продукции")]
         public string PrintedName { get; set; }
 
         [DisplayName("Цена")]

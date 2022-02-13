@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Unity;
+﻿using TypographyContracts.BusinessLogicsContracts;
 using TypographyContracts.BindingModels;
-using TypographyContracts.BusinessLogicsContracts;
+using System.Windows.Forms;
+using System;
+using Unity;
 
 namespace TypographyView {
     public partial class FormPrinteds : Form {
@@ -18,7 +13,7 @@ namespace TypographyView {
             logic = _logic;
         }
 
-        private void FormPastries_Load(object sender, EventArgs e) {
+        private void FormPrinteds_Load(object sender, EventArgs e) {
             LoadData();
         }
 
@@ -44,14 +39,20 @@ namespace TypographyView {
 
         private void buttonAdd_Click(object sender, EventArgs e) {
             var form = Program.Container.Resolve<FormPrinted>();
-            if (form.ShowDialog() == DialogResult.OK) LoadData();
+
+            if (form.ShowDialog() == DialogResult.OK) {
+                LoadData();
+            }
         }
 
         private void buttonUpd_Click(object sender, EventArgs e) {
             if (dataGridView.SelectedRows.Count == 1) {
                 var form = Program.Container.Resolve<FormPrinted>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                if (form.ShowDialog() == DialogResult.OK) LoadData();
+
+                if (form.ShowDialog() == DialogResult.OK) {
+                    LoadData();
+                }
             }
         }
 
