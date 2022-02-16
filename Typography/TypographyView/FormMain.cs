@@ -42,6 +42,16 @@ namespace TypographyView {
             form.ShowDialog();
         }
 
+        private void WarehouseToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
+
+        private void ReplenishWarehouseToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormReplenishWarehouse>();
+            form.ShowDialog();
+        }
+
         private void ButtonCreateOrder_Click(object sender, EventArgs e) {
             var form = Program.Container.Resolve<FormCreateOrder>();
             form.ShowDialog();
