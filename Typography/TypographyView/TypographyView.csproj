@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TypographyBusinessLogic\TypographyBusinessLogic.csproj" />
+    <ProjectReference Include="..\TypographyFileImplement\TypographyFileImplement.csproj" />
     <ProjectReference Include="..\TypographyListImplement\TypographyListImplement.csproj" />
   </ItemGroup>
 

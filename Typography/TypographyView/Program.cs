@@ -1,7 +1,8 @@
 using TypographyContracts.BusinessLogicsContracts;
 using TypographyBusinessLogic.BusinessLogics;
 using TypographyContracts.StoragesContracts;
-using TypographyListImplement.Implements;
+using TypographyFileImplement.Implements;
+using TypographyFileImplement;
 using System.Windows.Forms;
 using Unity.Lifetime;
 using System;
@@ -30,6 +31,7 @@ namespace TypographyView {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Container.Resolve<FormMain>());
+            FileDataListSingleton.Save();
         }
 
         private static IUnityContainer BuildUnityContainer() {

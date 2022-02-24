@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyView", "TypographyView\TypographyView.csproj", "{C23BB602-16BA-4678-8609-B5F6B9C70FC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypographyContracts", "TypographyContracts\TypographyContracts.csproj", "{2FCE1359-9CBC-4918-B501-1CB7BC9D5E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyContracts", "TypographyContracts\TypographyContracts.csproj", "{2FCE1359-9CBC-4918-B501-1CB7BC9D5E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypographyBusinessLogic", "TypographyBusinessLogic\TypographyBusinessLogic.csproj", "{C18CC493-B04C-4D14-B1BF-DEC9E2EA4031}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyBusinessLogic", "TypographyBusinessLogic\TypographyBusinessLogic.csproj", "{C18CC493-B04C-4D14-B1BF-DEC9E2EA4031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypographyListImplement", "TypographyListImplement\TypographyListImplement.csproj", "{BA05416B-A85C-49EB-B278-F3E0493FABEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyListImplement", "TypographyListImplement\TypographyListImplement.csproj", "{BA05416B-A85C-49EB-B278-F3E0493FABEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypographyFileImplement", "TypographyFileImplement\TypographyFileImplement.csproj", "{EC54A5EE-A9C0-4FFB-8E4E-2D125FC9E460}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BA05416B-A85C-49EB-B278-F3E0493FABEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA05416B-A85C-49EB-B278-F3E0493FABEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA05416B-A85C-49EB-B278-F3E0493FABEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC54A5EE-A9C0-4FFB-8E4E-2D125FC9E460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC54A5EE-A9C0-4FFB-8E4E-2D125FC9E460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC54A5EE-A9C0-4FFB-8E4E-2D125FC9E460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC54A5EE-A9C0-4FFB-8E4E-2D125FC9E460}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
