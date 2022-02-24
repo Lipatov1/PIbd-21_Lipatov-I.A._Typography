@@ -9,9 +9,11 @@ using System;
 namespace TypographyFileImplement {
     public class FileDataListSingleton {
         private static FileDataListSingleton instance;
+
         private readonly string ComponentFileName = "Component.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string PrintedFileName = "Printed.xml";
+
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Printed> Printeds { get; set; }
@@ -21,18 +23,13 @@ namespace TypographyFileImplement {
             Orders = LoadOrders();
             Printeds = LoadPrinteds();
         }
+
         public static FileDataListSingleton GetInstance() {
             if (instance == null) {
                 instance = new FileDataListSingleton();
             }
 
             return instance;
-        }
-
-        ~FileDataListSingleton() {
-            SaveComponents();
-            SaveOrders();
-            SavePrinteds();
         }
 
         public static void Save() {
