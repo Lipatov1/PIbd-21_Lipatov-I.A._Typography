@@ -30,6 +30,9 @@ namespace TypographyView
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.ComponentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ComponentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ComponentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelName = new System.Windows.Forms.Label();
             this.labelManagerName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -41,12 +44,40 @@ namespace TypographyView
             // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ComponentId,
+            this.ComponentName,
+            this.ComponentCount});
             this.dataGridView.Location = new System.Drawing.Point(12, 70);
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
             this.dataGridView.RowTemplate.Height = 25;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(376, 343);
             this.dataGridView.TabIndex = 0;
+            // 
+            // ComponentId
+            // 
+            this.ComponentId.HeaderText = "ComponentId";
+            this.ComponentId.Name = "ComponentId";
+            this.ComponentId.ReadOnly = true;
+            this.ComponentId.Visible = false;
+            // 
+            // ComponentName
+            // 
+            this.ComponentName.HeaderText = "Компонент";
+            this.ComponentName.Name = "ComponentName";
+            this.ComponentName.ReadOnly = true;
+            // 
+            // ComponentCount
+            // 
+            this.ComponentCount.HeaderText = "Количество";
+            this.ComponentCount.Name = "ComponentCount";
+            this.ComponentCount.ReadOnly = true;
             // 
             // labelName
             // 
@@ -130,5 +161,8 @@ namespace TypographyView
         private System.Windows.Forms.TextBox textBoxManagerName;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ComponentId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ComponentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ComponentCount;
     }
 }
