@@ -31,7 +31,7 @@ namespace TypographyView {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Container.Resolve<FormMain>());
-            FileDataListSingleton.Save();
+            FileDataListSingleton.GetInstance().Save();
         }
 
         private static IUnityContainer BuildUnityContainer() {

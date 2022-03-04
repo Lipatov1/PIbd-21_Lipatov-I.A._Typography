@@ -32,10 +32,10 @@ namespace TypographyFileImplement {
             return instance;
         }
 
-        public static void Save() {
-            instance.SaveComponents();
-            instance.SaveOrders();
-            instance.SavePrinteds();
+        public void Save() {
+            SaveComponents();
+            SaveOrders();
+            SavePrinteds();
         }
 
         private List<Component> LoadComponents() {
