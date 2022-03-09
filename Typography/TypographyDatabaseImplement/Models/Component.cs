@@ -11,6 +11,6 @@ namespace TypographyDatabaseImplement.Models {
         public string ComponentName { get; set; }
 
         [ForeignKey("ComponentId")]
-        public virtual List<PrintedComponent> ProductComponents { get; set; }
+        public virtual List<PrintedComponent> PrintedComponents { get; set; }
     }
 }

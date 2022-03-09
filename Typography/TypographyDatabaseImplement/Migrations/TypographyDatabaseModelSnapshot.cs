@@ -125,7 +125,7 @@ namespace TypographyDatabaseImplement.Migrations
             modelBuilder.Entity("TypographyDatabaseImplement.Models.PrintedComponent", b =>
                 {
                     b.HasOne("TypographyDatabaseImplement.Models.Component", "Component")
-                        .WithMany("ProductComponents")
+                        .WithMany("PrintedComponents")
                         .HasForeignKey("ComponentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -143,7 +143,7 @@ namespace TypographyDatabaseImplement.Migrations
 
             modelBuilder.Entity("TypographyDatabaseImplement.Models.Component", b =>
                 {
-                    b.Navigation("ProductComponents");
+                    b.Navigation("PrintedComponents");
                 });
 
             modelBuilder.Entity("TypographyDatabaseImplement.Models.Printed", b =>
