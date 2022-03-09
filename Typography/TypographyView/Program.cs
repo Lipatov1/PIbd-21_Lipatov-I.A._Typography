@@ -1,6 +1,7 @@
 using TypographyContracts.BusinessLogicsContracts;
 using TypographyBusinessLogic.BusinessLogics;
 using TypographyContracts.StoragesContracts;
+using TypographyDatabaseImplement.Implements;
 using TypographyFileImplement.Implements;
 using TypographyFileImplement;
 using System.Windows.Forms;
