@@ -8,7 +8,7 @@ using System.Linq;
 using System;
 
 namespace TypographyDatabaseImplement.Implements {
-    class OrderStorage : IOrderStorage {
+    public class OrderStorage : IOrderStorage {
         public List<OrderViewModel> GetFullList() {
             using (var context = new TypographyDatabase()) {
                 return context.Orders

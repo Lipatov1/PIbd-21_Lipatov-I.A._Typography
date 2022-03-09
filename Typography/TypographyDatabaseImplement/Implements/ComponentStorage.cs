@@ -7,7 +7,7 @@ using System.Linq;
 using System;
 
 namespace TypographyDatabaseImplement.Implements {
-    class ComponentStorage : IComponentStorage {
+    public class ComponentStorage : IComponentStorage {
         public List<ComponentViewModel> GetFullList() {
             using var context = new TypographyDatabase();
             return context.Components.Select(CreateModel).ToList();

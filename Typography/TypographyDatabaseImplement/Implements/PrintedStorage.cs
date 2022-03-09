@@ -8,7 +8,7 @@ using System.Linq;
 using System;
 
 namespace TypographyDatabaseImplement.Implements {
-    class PrintedStorage : IPrintedStorage {
+    public class PrintedStorage : IPrintedStorage {
         public List<PrintedViewModel> GetFullList() {
             using var context = new TypographyDatabase();
             return context.Printeds
@@ -52,7 +52,7 @@ namespace TypographyDatabaseImplement.Implements {
             using var transaction = context.Database.BeginTransaction();
 
             try {
-                context.Printeds.Add(CreateModel(model, new Printed(), context));
+                CreateModel(model, new Printed(), context);
                 context.SaveChanges();
                 transaction.Commit();
             }
@@ -111,6 +111,10 @@ namespace TypographyDatabaseImplement.Implements {
                     model.PrintedComponents.Remove(updateComponent.ComponentId);
                 }
 
+                context.SaveChanges();
+            }
+            else {
+                context.Printeds.Add(printed);
                 context.SaveChanges();
             }
 
