@@ -143,5 +143,9 @@ namespace TypographyListImplement.Implements {
 
             return warehouse;
         }
+
+        public bool CheckRemove(Dictionary<int, (string, int)> components, int printedCount) {
+            throw new NotImplementedException();
+        }
     }
 }

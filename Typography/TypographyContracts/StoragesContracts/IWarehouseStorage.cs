@@ -10,5 +10,6 @@ namespace TypographyContracts.StoragesContracts {
         void Insert(WarehouseBindingModel model);
         void Update(WarehouseBindingModel model);
         void Delete(WarehouseBindingModel model);
+        bool CheckRemove(Dictionary<int, (string, int)> components, int packagesCount);
     }
 }
