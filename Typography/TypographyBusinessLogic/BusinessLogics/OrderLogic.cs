@@ -9,9 +9,13 @@ using System;
 namespace TypographyBusinessLogic.BusinessLogics {
     public class OrderLogic : IOrderLogic {
         private readonly IOrderStorage orderStorage;
+        private readonly IPrintedStorage printedStorage;
+        private readonly IWarehouseStorage warehouseStorage;
 
-        public OrderLogic(IOrderStorage _orderStorage) {
+        public OrderLogic(IOrderStorage _orderStorage, IPrintedStorage _printedStorage, IWarehouseStorage _warehouseStorage) {
             orderStorage = _orderStorage;
+            printedStorage = _printedStorage;
+            warehouseStorage = _warehouseStorage;
         }
 
         public List<OrderViewModel> Read(OrderBindingModel model) {
@@ -48,6 +52,9 @@ namespace TypographyBusinessLogic.BusinessLogics {
 
             if (!element.Status.Contains(OrderStatus.Принят.ToString())) {
                 throw new Exception("Не в статусе \"Принят\"");
+            }
+            if (!warehouseStorage.CheckRemove(printedStorage.GetElement(new PrintedBindingModel { Id = element.PrintedId }).PrintedComponents, element.Count)) {
+                throw new Exception("Недостаточно компонентов");
             }
 
             orderStorage.Update(new OrderBindingModel {

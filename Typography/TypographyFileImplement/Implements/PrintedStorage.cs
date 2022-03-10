@@ -36,7 +36,7 @@ namespace TypographyFileImplement.Implements {
         }
 
         public void Insert(PrintedBindingModel model) {
-            int maxId = source.Printeds.Count > 0 ? source.Components.Max(rec => rec.Id) : 0;
+            int maxId = source.Printeds.Count > 0 ? source.Printeds.Max(rec => rec.Id) : 0;
 
             var element = new Printed {
                 Id = maxId + 1,
