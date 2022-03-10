@@ -109,18 +109,18 @@ namespace TypographyFileImplement.Implements {
             }
         }
 
-        public bool CheckRemove(Dictionary<int, (string, int)> components, int packagesCount) {
+        public bool CheckRemove(Dictionary<int, (string, int)> components, int printedsCount) {
             foreach (var warehouseComponent in components) {
                 int count = source.Warehouses.Where(component => component.WarehouseComponents.ContainsKey(warehouseComponent.Key))
                     .Sum(component => component.WarehouseComponents[warehouseComponent.Key]);
 
-                if (count < warehouseComponent.Value.Item2 * packagesCount) {
+                if (count < warehouseComponent.Value.Item2 * printedsCount) {
                     return false;
                 }
             }
 
             foreach (var warehouseComponent in components) {
-                int count = warehouseComponent.Value.Item2 * packagesCount;
+                int count = warehouseComponent.Value.Item2 * printedsCount;
                 IEnumerable<Warehouse> warehouses = source.Warehouses.Where(component => component.WarehouseComponents.ContainsKey(warehouseComponent.Key));
 
                 foreach (Warehouse warehouse in warehouses) {
