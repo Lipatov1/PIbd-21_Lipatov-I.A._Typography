@@ -12,7 +12,7 @@ namespace TypographyView {
             InitializeComponent();
             _logic = logic;
         }
-               
+
         private void FormComponents_Load(object sender, EventArgs e) {
             LoadData();
         }
@@ -32,16 +32,13 @@ namespace TypographyView {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void ButtonAdd_Click(object sender, EventArgs e)
-        {
+        private void ButtonAdd_Click(object sender, EventArgs e) {
             var form = Program.Container.Resolve<FormComponent>();
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
+            if (form.ShowDialog() == DialogResult.OK) {
                 LoadData();
             }
         }
-
         private void ButtonUpd_Click(object sender, EventArgs e) {
             if (dataGridView.SelectedRows.Count == 1) {
                 var form = Program.Container.Resolve<FormComponent>();
