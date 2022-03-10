@@ -39,6 +39,7 @@ namespace TypographyView {
                 LoadData();
             }
         }
+
         private void ButtonUpd_Click(object sender, EventArgs e) {
             if (dataGridView.SelectedRows.Count == 1) {
                 var form = Program.Container.Resolve<FormComponent>();
