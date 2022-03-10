@@ -5,23 +5,23 @@ using System;
 using Unity;
 
 namespace TypographyView {
-    public partial class FormComponents : Form {
-        private readonly IComponentLogic _logic;
+    public partial class FormWarehouses : Form {
+        private readonly IWarehouseLogic _logic;
 
-        public FormComponents(IComponentLogic logic) {
+        public FormWarehouses(IWarehouseLogic logic) {
             InitializeComponent();
             _logic = logic;
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e) {
-            var form = Program.Container.Resolve<FormComponent>();
+            var form = Program.Container.Resolve<FormWarehouse>();
 
             if (form.ShowDialog() == DialogResult.OK) {
                 LoadData();
             }
         }
 
-        private void FormComponents_Load(object sender, EventArgs e) {
+        private void FormWarehouses_Load(object sender, EventArgs e) {
             LoadData();
         }
 
@@ -32,8 +32,8 @@ namespace TypographyView {
                 if (list != null) {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].AutoSizeMode =
-                    DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[4].Visible = false;
+                    dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex) {
@@ -41,9 +41,9 @@ namespace TypographyView {
             }
         }
 
-        private void ButtonUpd_Click(object sender, EventArgs e) {
+        private void buttonUpd_Click(object sender, EventArgs e) {
             if (dataGridView.SelectedRows.Count == 1) {
-                var form = Program.Container.Resolve<FormComponent>();
+                var form = Program.Container.Resolve<FormWarehouse>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
 
                 if (form.ShowDialog() == DialogResult.OK) {
@@ -56,9 +56,9 @@ namespace TypographyView {
             if (dataGridView.SelectedRows.Count == 1) {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-
+                    
                     try {
-                        _logic.Delete(new ComponentBindingModel { Id = id });
+                        _logic.Delete(new WarehouseBindingModel { Id = id });
                     }
                     catch (Exception ex) {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
