@@ -23,7 +23,7 @@ namespace TypographyFileImplement.Implements {
                 return null;
             }
 
-            return source.Orders.Where(rec => rec.PrintedId.Equals(model.PrintedId)).Select(CreateModel).ToList();
+            return source.Orders.Where(rec => rec.PrintedId.Equals(model.PrintedId) || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)).Select(CreateModel).ToList();
         }
 
         public OrderViewModel GetElement(OrderBindingModel model) {

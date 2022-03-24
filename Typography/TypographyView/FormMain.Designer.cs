@@ -33,6 +33,10 @@ namespace TypographyView
             this.ReferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.componentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrintedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListComponentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ComponentPrintedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ButtonCreateOrder = new System.Windows.Forms.Button();
             this.ButtonTakeOrderInWork = new System.Windows.Forms.Button();
@@ -46,7 +50,8 @@ namespace TypographyView
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ReferencesToolStripMenuItem});
+            this.ReferencesToolStripMenuItem,
+            this.ReportsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1001, 24);
@@ -75,6 +80,37 @@ namespace TypographyView
             this.PrintedsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.PrintedsToolStripMenuItem.Text = "Печатная продукция";
             this.PrintedsToolStripMenuItem.Click += new System.EventHandler(this.PrintedsToolStripMenuItem_Click);
+            // 
+            // ReportsToolStripMenuItem
+            // 
+            this.ReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ListComponentsToolStripMenuItem,
+            this.ComponentPrintedsToolStripMenuItem,
+            this.ListOrdersToolStripMenuItem});
+            this.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem";
+            this.ReportsToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.ReportsToolStripMenuItem.Text = "Отчеты";
+            // 
+            // ListComponentsToolStripMenuItem
+            // 
+            this.ListComponentsToolStripMenuItem.Name = "ListComponentsToolStripMenuItem";
+            this.ListComponentsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.ListComponentsToolStripMenuItem.Text = "Список компонентов";
+            this.ListComponentsToolStripMenuItem.Click += new System.EventHandler(this.ListComponentsToolStripMenuItem_Click);
+            // 
+            // ComponentPrintedsToolStripMenuItem
+            // 
+            this.ComponentPrintedsToolStripMenuItem.Name = "ComponentPrintedsToolStripMenuItem";
+            this.ComponentPrintedsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.ComponentPrintedsToolStripMenuItem.Text = "Компоненты по изделиям";
+            this.ComponentPrintedsToolStripMenuItem.Click += new System.EventHandler(this.ComponentPrintedsToolStripMenuItem_Click);
+            // 
+            // ListOrdersToolStripMenuItem
+            // 
+            this.ListOrdersToolStripMenuItem.Name = "ListOrdersToolStripMenuItem";
+            this.ListOrdersToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.ListOrdersToolStripMenuItem.Text = "Список заказов";
+            this.ListOrdersToolStripMenuItem.Click += new System.EventHandler(this.OrdersToolStripMenuItem_Click);
             // 
             // dataGridView
             // 
@@ -178,5 +214,9 @@ namespace TypographyView
         private System.Windows.Forms.Button ButtonIssuedOrder;
         private System.Windows.Forms.Button ButtonRef;
         private System.Windows.Forms.ToolStripMenuItem PrintedsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ListComponentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ComponentPrintedsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ListOrdersToolStripMenuItem;
     }
 }

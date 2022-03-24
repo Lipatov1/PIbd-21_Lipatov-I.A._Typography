@@ -10,7 +10,7 @@ using TypographyDatabaseImplement;
 namespace TypographyDatabaseImplement.Migrations
 {
     [DbContext(typeof(TypographyDatabase))]
-    [Migration("20220309155753_InitialCreate")]
+    [Migration("20220310144527_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,5 +1,7 @@
+using TypographyBusinessLogic.OfficePackage.Implements;
 using TypographyContracts.BusinessLogicsContracts;
 using TypographyBusinessLogic.BusinessLogics;
+using TypographyBusinessLogic.OfficePackage;
 using TypographyContracts.StoragesContracts;
 using TypographyDatabaseImplement.Implements;
 using TypographyFileImplement;
@@ -42,6 +44,10 @@ namespace TypographyView {
             currentContainer.RegisterType<IComponentLogic, ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderLogic, OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IPrintedLogic, PrintedLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportLogic, ReportLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToExcel, SaveToExcel>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToPdf, SaveToPdf>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToWord, SaveToWord>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

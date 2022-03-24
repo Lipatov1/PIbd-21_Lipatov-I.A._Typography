@@ -7,10 +7,12 @@ using Unity;
 namespace TypographyView {
     public partial class FormMain : Form {
         private readonly IOrderLogic _orderLogic;
+        private readonly IReportLogic _reportLogic;
 
-        public FormMain(IOrderLogic orderLogic) {
+        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic) {
             InitializeComponent();
             _orderLogic = orderLogic;
+            _reportLogic = reportLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e) {
@@ -39,6 +41,27 @@ namespace TypographyView {
 
         private void PrintedsToolStripMenuItem_Click(object sender, EventArgs e) {
             var form = Program.Container.Resolve<FormPrinteds>();
+            form.ShowDialog();
+        }
+                
+        private void ListComponentsToolStripMenuItem_Click(object sender, EventArgs e) {
+            using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
+
+            if (dialog.ShowDialog() == DialogResult.OK) {
+                _reportLogic.SaveComponentsToWordFile(new ReportBindingModel {
+                    FileName = dialog.FileName
+                });
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ComponentPrintedsToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormReportPrintedComponents>();
+            form.ShowDialog();
+        }
+
+        private void OrdersToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
 

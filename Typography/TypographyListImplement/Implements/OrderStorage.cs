@@ -24,7 +24,7 @@ namespace TypographyListImplement.Implements {
 
             var result = new List<OrderViewModel>();
             foreach (var order in source.Orders) {
-                if (order.PrintedId == model.PrintedId) result.Add(CreateModel(order));
+                if (order.PrintedId == model.PrintedId || (order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)) result.Add(CreateModel(order));
             }
             return result;
         }
