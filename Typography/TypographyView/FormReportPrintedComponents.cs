@@ -20,9 +20,9 @@ namespace TypographyView {
                     dataGridView.Rows.Clear();
 
                     foreach (var elem in dict) {
-                        dataGridView.Rows.Add(new object[] { elem.ComponentName, "", "" });
+                        dataGridView.Rows.Add(new object[] { elem.PrintedName, "", "" });
 
-                        foreach (var listElem in elem.Printeds) {
+                        foreach (var listElem in elem.Components) {
                             dataGridView.Rows.Add(new object[] { "", listElem.Item1, listElem.Item2 });
                         }
 

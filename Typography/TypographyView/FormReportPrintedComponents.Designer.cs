@@ -31,8 +31,8 @@ namespace TypographyView
         {
             this.ButtonSaveToExcel = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.Component = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Printed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Component = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -56,29 +56,30 @@ namespace TypographyView
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Component,
             this.Printed,
+            this.Component,
             this.Amount});
-            this.dataGridView.Location = new System.Drawing.Point(0, 40);
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView.Location = new System.Drawing.Point(0, 45);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.RowTemplate.Height = 25;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(503, 412);
+            this.dataGridView.Size = new System.Drawing.Size(502, 405);
             this.dataGridView.TabIndex = 1;
-            // 
-            // Component
-            // 
-            this.Component.HeaderText = "Компонент";
-            this.Component.Name = "Component";
-            this.Component.ReadOnly = true;
             // 
             // Printed
             // 
             this.Printed.HeaderText = "Печатная продукция";
             this.Printed.Name = "Printed";
             this.Printed.ReadOnly = true;
+            // 
+            // Component
+            // 
+            this.Component.HeaderText = "Компонент";
+            this.Component.Name = "Component";
+            this.Component.ReadOnly = true;
             // 
             // Amount
             // 
@@ -105,8 +106,8 @@ namespace TypographyView
 
         private System.Windows.Forms.Button ButtonSaveToExcel;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Component;
         private System.Windows.Forms.DataGridViewTextBoxColumn Printed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Component;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
     }
 }

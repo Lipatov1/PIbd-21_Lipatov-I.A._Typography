@@ -3,8 +3,8 @@ using System;
 
 namespace TypographyContracts.ViewModels {
     public class ReportPrintedComponentViewModel {
-        public string ComponentName { get; set; }
+        public string PrintedName { get; set; }
         public int TotalCount { get; set; }
-        public List<Tuple<string, int>> Printeds { get; set; }
+        public List<Tuple<string, int>> Components { get; set; }
     }
 }

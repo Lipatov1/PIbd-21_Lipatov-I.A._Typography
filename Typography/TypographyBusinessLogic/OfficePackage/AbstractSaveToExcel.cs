@@ -20,34 +20,39 @@ namespace TypographyBusinessLogic.OfficePackage {
             });
 
             uint rowIndex = 2;
-
             foreach (var pc in info.PrintedComponents) {
                 InsertCellInWorksheet(new ExcelCellParameters {
                     ColumnName = "A",
                     RowIndex = rowIndex,
-                    Text = pc.ComponentName,
+                    Text = pc.PrintedName,
                     StyleInfo = ExcelStyleInfoType.Text
                 });
-
                 rowIndex++;
 
-                foreach (var printed in pc.Printeds) {
+                foreach (var component in pc.Components) {
                     InsertCellInWorksheet(new ExcelCellParameters {
                         ColumnName = "B",
                         RowIndex = rowIndex,
-                        Text = printed.Item1,
+                        Text = component.Item1,
                         StyleInfo = ExcelStyleInfoType.TextWithBroder
                     });
 
                     InsertCellInWorksheet(new ExcelCellParameters {
                         ColumnName = "C",
                         RowIndex = rowIndex,
-                        Text = printed.Item2.ToString(),
+                        Text = component.Item2.ToString(),
                         StyleInfo = ExcelStyleInfoType.TextWithBroder
                     });
 
                     rowIndex++;
                 }
+
+                InsertCellInWorksheet(new ExcelCellParameters {
+                    ColumnName = "A",
+                    RowIndex = rowIndex,
+                    Text = "Итого",
+                    StyleInfo = ExcelStyleInfoType.Text
+                });
 
                 InsertCellInWorksheet(new ExcelCellParameters {
                     ColumnName = "C",
@@ -58,6 +63,7 @@ namespace TypographyBusinessLogic.OfficePackage {
 
                 rowIndex++;
             }
+
             SaveExcel(info);
         }
 
