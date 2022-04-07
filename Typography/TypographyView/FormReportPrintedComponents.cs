@@ -12,7 +12,7 @@ namespace TypographyView {
             _logic = logic;
         }
 
-        private void FormReportProductComponents_Load(object sender, EventArgs e) {
+        private void FormReportPrintedComponents_Load(object sender, EventArgs e) {
             try {
                 var dict = _logic.GetPrintedComponent();
       
