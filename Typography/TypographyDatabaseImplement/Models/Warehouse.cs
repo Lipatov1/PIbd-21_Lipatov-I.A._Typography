@@ -1,19 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System;
 
 namespace TypographyDatabaseImplement.Models {
-    // Компонент, требуемый для изготовления изделия
-    public class Component {
+    public class Warehouse {
         public int Id { get; set; }
 
         [Required]
-        public string ComponentName { get; set; }
+        public string WarehouseName { get; set; }
 
-        [ForeignKey("ComponentId")]
-        public virtual List<PrintedComponent> PrintedComponents { get; set; }
+        [Required]
+        public string WarehouseManagerFullName { get; set; }
 
-        [ForeignKey("ComponentId")]
+        [Required]
+        public DateTime DateCreate { get; set; }
+
+        [ForeignKey("WarehouseId")]
         public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
     }
 }
