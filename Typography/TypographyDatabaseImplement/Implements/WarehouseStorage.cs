@@ -53,8 +53,15 @@ namespace TypographyDatabaseImplement.Implements {
             using var transaction = context.Database.BeginTransaction();
 
             try {
-                CreateModel(model, new Warehouse(), context);
+                Warehouse warehouse = new Warehouse() {
+                    WarehouseName = model.WarehouseName,
+                    WarehouseManagerFullName = model.WarehouseManagerFullName,
+                    DateCreate = model.DateCreate
+                };
+                
+                context.Warehouses.Add(warehouse);
                 context.SaveChanges();
+                CreateModel(model, warehouse, context);
                 transaction.Commit();
             }
             catch {
