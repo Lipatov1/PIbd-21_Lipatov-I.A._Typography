@@ -48,7 +48,7 @@ namespace TypographyView {
             using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
 
             if (dialog.ShowDialog() == DialogResult.OK) {
-                _reportLogic.SaveComponentsToWordFile(new ReportBindingModel {
+                _reportLogic.SavePrintedsToWordFile(new ReportBindingModel {
                     FileName = dialog.FileName
                 });
                 MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);

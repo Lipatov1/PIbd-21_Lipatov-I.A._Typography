@@ -10,8 +10,8 @@ namespace TypographyContracts.BusinessLogicsContracts {
         // Получение списка заказов за определенный период
         List<ReportOrdersViewModel> GetOrders(ReportBindingModel model);
 
-        // Сохранение компонентов в файл-Word
-        void SaveComponentsToWordFile(ReportBindingModel model);
+        // Сохранение печатной продукции в файл-Word
+        void SavePrintedsToWordFile(ReportBindingModel model);
 
         // Сохранение компонентов с указаеним печатной продукции в файл-Excel
         void SavePrintedComponentToExcelFile(ReportBindingModel model);

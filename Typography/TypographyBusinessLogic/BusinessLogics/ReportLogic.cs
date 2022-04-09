@@ -66,7 +66,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
         }
 
         // Сохранение компонент в файл-Word
-        public void SaveComponentsToWordFile(ReportBindingModel model) {
+        public void SavePrintedsToWordFile(ReportBindingModel model) {
             _saveToWord.CreateDoc(new WordInfo {
                 FileName = model.FileName,
                 Title = "Список продцукции",

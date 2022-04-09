@@ -7,17 +7,14 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml;
 using System.Linq;
 
-namespace TypographyBusinessLogic.OfficePackage.Implements
-{
-    public class SaveToExcel : AbstractSaveToExcel
-    {
+namespace TypographyBusinessLogic.OfficePackage.Implements {
+    public class SaveToExcel : AbstractSaveToExcel {
         private SpreadsheetDocument _spreadsheetDocument;
         private SharedStringTablePart _shareStringPart;
         private Worksheet _worksheet;
 
         // Настройка стилей для файла
-        private static void CreateStyles(WorkbookPart workbookpart)
-        {
+        private static void CreateStyles(WorkbookPart workbookpart) {
             var sp = workbookpart.AddNewPart<WorkbookStylesPart>();
             sp.Stylesheet = new Stylesheet();
             var fonts = new Fonts() { Count = 2U, KnownFonts = true };
@@ -101,10 +98,8 @@ namespace TypographyBusinessLogic.OfficePackage.Implements
         }
 
         // Получение номера стиля из типа
-        private static uint GetStyleValue(ExcelStyleInfoType styleInfo)
-        {
-            return styleInfo switch
-            {
+        private static uint GetStyleValue(ExcelStyleInfoType styleInfo) {
+            return styleInfo switch {
                 ExcelStyleInfoType.Title => 2U,
                 ExcelStyleInfoType.TextWithBroder => 1U,
                 ExcelStyleInfoType.Text => 0U,
@@ -112,8 +107,7 @@ namespace TypographyBusinessLogic.OfficePackage.Implements
             };
         }
 
-        protected override void CreateExcel(ExcelInfo info)
-        {
+        protected override void CreateExcel(ExcelInfo info) {
             _spreadsheetDocument = SpreadsheetDocument.Create(info.FileName, SpreadsheetDocumentType.Workbook);
 
             // Создаем книгу (в ней хранятся листы)
@@ -126,8 +120,7 @@ namespace TypographyBusinessLogic.OfficePackage.Implements
             _spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First() : _spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
 
             // Создаем SharedStringTable, если его нет
-            if (_shareStringPart.SharedStringTable == null)
-            {
+            if (_shareStringPart.SharedStringTable == null) {
                 _shareStringPart.SharedStringTable = new SharedStringTable();
             }
 
@@ -138,8 +131,7 @@ namespace TypographyBusinessLogic.OfficePackage.Implements
             // Добавляем лист в книгу
             var sheets = _spreadsheetDocument.WorkbookPart.Workbook.AppendChild(new Sheets());
 
-            var sheet = new Sheet()
-            {
+            var sheet = new Sheet() {
                 Id = _spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart),
                 SheetId = 1,
                 Name = "Лист"
@@ -149,38 +141,31 @@ namespace TypographyBusinessLogic.OfficePackage.Implements
             _worksheet = worksheetPart.Worksheet;
         }
 
-        protected override void InsertCellInWorksheet(ExcelCellParameters excelParams)
-        {
+        protected override void InsertCellInWorksheet(ExcelCellParameters excelParams) {
             var sheetData = _worksheet.GetFirstChild<SheetData>();
 
             // Ищем строку, либо добавляем ее
             Row row;
-            if (sheetData.Elements<Row>().Where(r => r.RowIndex == excelParams.RowIndex).Any())
-            {
+            if (sheetData.Elements<Row>().Where(r => r.RowIndex == excelParams.RowIndex).Any()) {
                 row = sheetData.Elements<Row>().Where(r => r.RowIndex == excelParams.RowIndex).First();
             }
-            else
-            {
+            else {
                 row = new Row() { RowIndex = excelParams.RowIndex };
                 sheetData.Append(row);
             }
 
             // Ищем нужную ячейку
             Cell cell;
-            if (row.Elements<Cell>().Where(c => c.CellReference.Value == excelParams.CellReference).Any())
-            {
+            if (row.Elements<Cell>().Where(c => c.CellReference.Value == excelParams.CellReference).Any()) {
                 cell = row.Elements<Cell>().Where(c => c.CellReference.Value == excelParams.CellReference).First();
             }
-            else
-            {
+            else {
                 // Все ячейки должны быть последовательно друг за другом расположены
                 // нужно определить, после какой вставлять
                 Cell refCell = null;
 
-                foreach (Cell rowCell in row.Elements<Cell>())
-                {
-                    if (string.Compare(rowCell.CellReference.Value, excelParams.CellReference, true) > 0)
-                    {
+                foreach (Cell rowCell in row.Elements<Cell>()) {
+                    if (string.Compare(rowCell.CellReference.Value, excelParams.CellReference, true) > 0) {
                         refCell = rowCell;
                         break;
                     }
@@ -199,40 +184,33 @@ namespace TypographyBusinessLogic.OfficePackage.Implements
             cell.StyleIndex = GetStyleValue(excelParams.StyleInfo);
         }
 
-        protected override void MergeCells(ExcelMergeParameters excelParams)
-        {
+        protected override void MergeCells(ExcelMergeParameters excelParams) {
             MergeCells mergeCells;
 
-            if (_worksheet.Elements<MergeCells>().Any())
-            {
+            if (_worksheet.Elements<MergeCells>().Any()) {
                 mergeCells = _worksheet.Elements<MergeCells>().First();
             }
-            else
-            {
+            else {
                 mergeCells = new MergeCells();
 
-                if (_worksheet.Elements<CustomSheetView>().Any())
-                {
+                if (_worksheet.Elements<CustomSheetView>().Any()) {
                     _worksheet.InsertAfter(mergeCells,
                    _worksheet.Elements<CustomSheetView>().First());
                 }
-                else
-                {
+                else {
                     _worksheet.InsertAfter(mergeCells,
                    _worksheet.Elements<SheetData>().First());
                 }
             }
 
-            var mergeCell = new MergeCell()
-            {
+            var mergeCell = new MergeCell() {
                 Reference = new StringValue(excelParams.Merge)
             };
 
             mergeCells.Append(mergeCell);
         }
 
-        protected override void SaveExcel(ExcelInfo info)
-        {
+        protected override void SaveExcel(ExcelInfo info) {
             _spreadsheetDocument.WorkbookPart.Workbook.Save();
             _spreadsheetDocument.Close();
         }
