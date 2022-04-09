@@ -56,6 +56,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 DateTo = model.DateTo
             })
             .Select(x => new ReportOrdersViewModel {
+                ClientFIO = x.ClientFIO,
                 DateCreate = x.DateCreate,
                 PrintedName = x.PrintedName,
                 Count = x.Count,

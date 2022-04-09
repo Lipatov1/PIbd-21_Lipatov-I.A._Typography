@@ -33,6 +33,10 @@
           <DataField>Status</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ClientFIO">
+          <DataField>ClientFIO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Sum">
           <DataField>Sum</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -69,7 +73,7 @@
               </Paragraph>
             </Paragraphs>
             <Height>0.81167cm</Height>
-            <Width>22.30437cm</Width>
+            <Width>24.15203cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -84,19 +88,22 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.45791cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>5.91312cm</Width>
+                  <Width>4.14041cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>3.82291cm</Width>
                 </TablixColumn>
                 <TablixColumn>
+                  <Width>5.51624cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>3.55833cm</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.96063cm</Width>
+                  <Width>3.9023cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -124,6 +131,42 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>ФИО клиента</Value>
+                                  <Style>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -320,6 +363,41 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="ClientFIO">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ClientFIO.Value</Value>
+                                  <Style>
+                                    <FontSize>14pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ClientFIO</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="PrintedName">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -469,6 +547,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -485,7 +564,7 @@
             <Top>1.94965cm</Top>
             <Left>0.34141cm</Left>
             <Height>1.835cm</Height>
-            <Width>21.65457cm</Width>
+            <Width>23.44019cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -513,9 +592,9 @@
               </Paragraph>
             </Paragraphs>
             <Top>4.25662cm</Top>
-            <Left>10.71244cm</Left>
+            <Left>13.82098cm</Left>
             <Height>0.67938cm</Height>
-            <Width>3.82291cm</Width>
+            <Width>3.57188cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -549,7 +628,7 @@
             <rd:DefaultName>ReportParameterPeriod</rd:DefaultName>
             <Top>0.98806cm</Top>
             <Height>0.78521cm</Height>
-            <Width>22.30437cm</Width>
+            <Width>24.15203cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -581,7 +660,7 @@
               </Paragraph>
             </Paragraphs>
             <Top>4.25662cm</Top>
-            <Left>14.53535cm</Left>
+            <Left>17.39285cm</Left>
             <Height>0.67938cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>4</ZIndex>
@@ -599,7 +678,7 @@
         <Height>2.11458in</Height>
         <Style />
       </Body>
-      <Width>8.80591in</Width>
+      <Width>9.50867in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

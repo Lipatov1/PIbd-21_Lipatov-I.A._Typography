@@ -37,6 +37,8 @@ namespace TypographyView
             this.textBoxSum = new System.Windows.Forms.TextBox();
             this.ButtonCancel = new System.Windows.Forms.Button();
             this.ButtonSave = new System.Windows.Forms.Button();
+            this.comboBoxClient = new System.Windows.Forms.ComboBox();
+            this.labelClient = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelPrinted
@@ -92,7 +94,7 @@ namespace TypographyView
             // 
             // ButtonCancel
             // 
-            this.ButtonCancel.Location = new System.Drawing.Point(277, 99);
+            this.ButtonCancel.Location = new System.Drawing.Point(277, 128);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
             this.ButtonCancel.TabIndex = 6;
@@ -102,7 +104,7 @@ namespace TypographyView
             // 
             // ButtonSave
             // 
-            this.ButtonSave.Location = new System.Drawing.Point(196, 99);
+            this.ButtonSave.Location = new System.Drawing.Point(196, 128);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(75, 23);
             this.ButtonSave.TabIndex = 7;
@@ -110,11 +112,30 @@ namespace TypographyView
             this.ButtonSave.UseVisualStyleBackColor = true;
             this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
+            // comboBoxClient
+            // 
+            this.comboBoxClient.FormattingEnabled = true;
+            this.comboBoxClient.Location = new System.Drawing.Point(142, 99);
+            this.comboBoxClient.Name = "comboBoxClient";
+            this.comboBoxClient.Size = new System.Drawing.Size(220, 23);
+            this.comboBoxClient.TabIndex = 8;
+            // 
+            // labelClient
+            // 
+            this.labelClient.AutoSize = true;
+            this.labelClient.Location = new System.Drawing.Point(12, 102);
+            this.labelClient.Name = "labelClient";
+            this.labelClient.Size = new System.Drawing.Size(49, 15);
+            this.labelClient.TabIndex = 9;
+            this.labelClient.Text = "Клиент:";
+            // 
             // FormCreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 134);
+            this.ClientSize = new System.Drawing.Size(376, 158);
+            this.Controls.Add(this.labelClient);
+            this.Controls.Add(this.comboBoxClient);
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.textBoxSum);
@@ -141,5 +162,7 @@ namespace TypographyView
         private System.Windows.Forms.TextBox textBoxSum;
         private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Button ButtonSave;
+        private System.Windows.Forms.ComboBox comboBoxClient;
+        private System.Windows.Forms.Label labelClient;
     }
 }

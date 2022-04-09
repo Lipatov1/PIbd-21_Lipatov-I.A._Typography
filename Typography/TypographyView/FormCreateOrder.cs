@@ -9,11 +9,13 @@ namespace TypographyView {
     public partial class FormCreateOrder : Form {
         private readonly IPrintedLogic _logicP;
         private readonly IOrderLogic _logicO;
+        private readonly IClientLogic _logicC;
 
-        public FormCreateOrder(IPrintedLogic logicP, IOrderLogic logicO) {
+        public FormCreateOrder(IPrintedLogic logicP, IOrderLogic logicO, IClientLogic logicC) {
             InitializeComponent();
             _logicP = logicP;
             _logicO = logicO;
+            _logicC = logicC;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e) {
@@ -25,6 +27,14 @@ namespace TypographyView {
                     comboBoxPrinted.ValueMember = "Id";
                     comboBoxPrinted.DataSource = list;
                     comboBoxPrinted.SelectedItem = null;
+                }
+
+                List<ClientViewModel> listClients = _logicC.Read(null);
+                if (listClients != null) {
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listClients;
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex) {
@@ -63,8 +73,11 @@ namespace TypographyView {
             }
 
             if (comboBoxPrinted.SelectedValue == null) {
-                MessageBox.Show("Выберите печатную продукцию", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Выберите печатную продукцию", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (comboBoxClient.SelectedValue == null) {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -72,7 +85,8 @@ namespace TypographyView {
                 _logicO.CreateOrder(new CreateOrderBindingModel {
                     PrintedId = Convert.ToInt32(comboBoxPrinted.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
-                    Sum = Convert.ToDecimal(textBoxSum.Text)
+                    Sum = Convert.ToDecimal(textBoxSum.Text),
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue)
                 });
 
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);

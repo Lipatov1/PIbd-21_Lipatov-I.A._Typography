@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyListImplement", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyFileImplement", "TypographyFileImplement\TypographyFileImplement.csproj", "{EC54A5EE-A9C0-4FFB-8E4E-2D125FC9E460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypographyDatabaseImplement", "TypographyDatabaseImplement\TypographyDatabaseImplement.csproj", "{3EF67614-1EDB-4912-A39E-AF5008FB696B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyDatabaseImplement", "TypographyDatabaseImplement\TypographyDatabaseImplement.csproj", "{3EF67614-1EDB-4912-A39E-AF5008FB696B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypographyRestApi", "TypographyRestApi\TypographyRestApi.csproj", "{13566957-A12F-45A2-B92B-08B6A31A87EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypographyClientApp", "TypographyClientApp\TypographyClientApp.csproj", "{7881B163-5F6F-4635-BE6F-491CDB18D4CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{3EF67614-1EDB-4912-A39E-AF5008FB696B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EF67614-1EDB-4912-A39E-AF5008FB696B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EF67614-1EDB-4912-A39E-AF5008FB696B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13566957-A12F-45A2-B92B-08B6A31A87EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13566957-A12F-45A2-B92B-08B6A31A87EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13566957-A12F-45A2-B92B-08B6A31A87EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13566957-A12F-45A2-B92B-08B6A31A87EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7881B163-5F6F-4635-BE6F-491CDB18D4CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7881B163-5F6F-4635-BE6F-491CDB18D4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7881B163-5F6F-4635-BE6F-491CDB18D4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7881B163-5F6F-4635-BE6F-491CDB18D4CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

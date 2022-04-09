@@ -29,6 +29,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
         public void CreateOrder(CreateOrderBindingModel model) {
             OrderBindingModel order = new OrderBindingModel {
                 PrintedId = model.PrintedId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 Status = 0,
@@ -54,6 +55,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Id = model.OrderId,
                 Status = OrderStatus.Выполняется,
                 PrintedId = element.PrintedId,
+                ClientId = element.ClientId,
                 Count = element.Count,
                 Sum = element.Sum,
                 DateCreate = element.DateCreate,
@@ -79,6 +81,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Status = OrderStatus.Готов,
                 DateImplement = element.DateImplement,
                 PrintedId = element.PrintedId,
+                ClientId = element.ClientId,
                 Count = element.Count,
                 Sum = element.Sum,
                 DateCreate = element.DateCreate
@@ -103,6 +106,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Status = OrderStatus.Выдан,
                 DateImplement = element.DateImplement,
                 PrintedId = element.PrintedId,
+                ClientId = element.ClientId,
                 Count = element.Count,
                 Sum = element.Sum,
                 DateCreate = element.DateCreate

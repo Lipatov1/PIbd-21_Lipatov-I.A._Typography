@@ -6,7 +6,9 @@ namespace TypographyDatabaseImplement.Models {
     public class Order {
         public int Id { get; set; }
         public int PrintedId { get; set; }
+        public int ClientId { get; set; }
         public virtual Printed Printed { get; set; }
+        public virtual Client Client { get; set; }
 
         [Required]
         public int Count { get; set; }

@@ -13,10 +13,13 @@ namespace TypographyDatabaseImplement.Implements {
             using (var context = new TypographyDatabase()) {
                 return context.Orders
                     .Include(rec => rec.Printed)
+                    .Include(rec => rec.Client)
                     .Select(rec => new OrderViewModel {
                         Id = rec.Id,
                         PrintedId = rec.PrintedId,
                         PrintedName = rec.Printed.PrintedName,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.ClientFIO,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status.ToString(),
@@ -35,11 +38,14 @@ namespace TypographyDatabaseImplement.Implements {
             using (var context = new TypographyDatabase()) {
                 return context.Orders
                     .Include(rec => rec.Printed)
-                    .Where(rec => rec.PrintedId == model.PrintedId || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo))
+                    .Include(rec => rec.Client)
+                    .Where(rec => rec.PrintedId == model.PrintedId || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo && model.DateFrom.HasValue && model.DateTo.HasValue) || model.ClientId.HasValue && rec.ClientId == model.ClientId)
                     .Select(rec => new OrderViewModel {
                         Id = rec.Id,
                         PrintedId = rec.PrintedId,
                         PrintedName = rec.Printed.PrintedName,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.ClientFIO,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status.ToString(),
@@ -58,12 +64,15 @@ namespace TypographyDatabaseImplement.Implements {
             using (var context = new TypographyDatabase()) {
                 Order order = context.Orders
                     .Include(rec => rec.Printed)
+                    .Include(rec => rec.Client)
                     .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel {
                     Id = order.Id,
                     PrintedId = order.PrintedId,
                     PrintedName = order.Printed.PrintedName,
+                    ClientId = order.ClientId,
+                    ClientFIO = order.Client.ClientFIO,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status.ToString(),
@@ -76,18 +85,7 @@ namespace TypographyDatabaseImplement.Implements {
 
         public void Insert(OrderBindingModel model) {
             using (var context = new TypographyDatabase()) {
-                Order order = new Order {
-                    PrintedId = model.PrintedId,
-                    Count = model.Count,
-                    Sum = model.Sum,
-                    Status = model.Status,
-                    DateCreate = model.DateCreate,
-                    DateImplement = model.DateImplement,
-                };
-                context.Orders.Add(order);
-                context.SaveChanges();
-
-                CreateModel(model, order);
+                context.Orders.Add(CreateModel(model, new Order()));
                 context.SaveChanges();
             }
         }
@@ -99,13 +97,6 @@ namespace TypographyDatabaseImplement.Implements {
                 if (element == null) {
                     throw new Exception("Элемент не найден");
                 }
-
-                element.PrintedId = model.PrintedId;
-                element.Count = model.Count;
-                element.Sum = model.Sum;
-                element.Status = model.Status;
-                element.DateCreate = model.DateCreate;
-                element.DateImplement = model.DateImplement;
 
                 CreateModel(model, element);
                 context.SaveChanges();
@@ -127,26 +118,13 @@ namespace TypographyDatabaseImplement.Implements {
         }
 
         private Order CreateModel(OrderBindingModel model, Order order) {
-            if (model == null) {
-                return null;
-            }
-
-            using (var context = new TypographyDatabase()) {
-                Printed element = context.Printeds.FirstOrDefault(rec => rec.Id == model.PrintedId);
-
-                if (element != null) {
-                    if (element.Orders == null) {
-                        element.Orders = new List<Order>();
-                    }
-
-                    element.Orders.Add(order);
-                    context.Printeds.Update(element);
-                    context.SaveChanges();
-                }
-                else {
-                    throw new Exception("Элемент не найден");
-                }
-            }
+            order.PrintedId = model.PrintedId;
+            order.Sum = model.Sum;
+            order.Count = model.Count;
+            order.Status = model.Status;
+            order.DateCreate = model.DateCreate;
+            order.DateImplement = model.DateImplement;
+            order.ClientId = model.ClientId.Value;
             return order;
         }
     }

@@ -14,5 +14,6 @@ namespace TypographyDatabaseImplement {
         public virtual DbSet<Printed> Printeds { set; get; }
         public virtual DbSet<PrintedComponent> PrintedComponents { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<Client> Clients { set; get; }
     }
 }

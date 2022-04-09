@@ -43,6 +43,7 @@ namespace TypographyView
             this.ButtonOrderReady = new System.Windows.Forms.Button();
             this.ButtonIssuedOrder = new System.Windows.Forms.Button();
             this.ButtonRef = new System.Windows.Forms.Button();
+            this.ClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +63,8 @@ namespace TypographyView
             // 
             this.ReferencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.componentsToolStripMenuItem,
-            this.PrintedsToolStripMenuItem});
+            this.PrintedsToolStripMenuItem,
+            this.ClientsToolStripMenuItem});
             this.ReferencesToolStripMenuItem.Name = "ReferencesToolStripMenuItem";
             this.ReferencesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.ReferencesToolStripMenuItem.Text = "Справочники";
@@ -178,6 +180,13 @@ namespace TypographyView
             this.ButtonRef.UseVisualStyleBackColor = true;
             this.ButtonRef.Click += new System.EventHandler(this.ButtonRef_Click);
             // 
+            // ClientsToolStripMenuItem
+            // 
+            this.ClientsToolStripMenuItem.Name = "ClientsToolStripMenuItem";
+            this.ClientsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.ClientsToolStripMenuItem.Text = "Клиенты";
+            this.ClientsToolStripMenuItem.Click += new System.EventHandler(this.ClientsToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -218,5 +227,6 @@ namespace TypographyView
         private System.Windows.Forms.ToolStripMenuItem ListComponentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ComponentPrintedsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ListOrdersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ClientsToolStripMenuItem;
     }
 }

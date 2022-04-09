@@ -27,6 +27,7 @@ namespace TypographyView {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[3].Visible = false;
                 }
             }
             catch (Exception ex) {
@@ -43,7 +44,12 @@ namespace TypographyView {
             var form = Program.Container.Resolve<FormPrinteds>();
             form.ShowDialog();
         }
-                
+
+        private void ClientsToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormClients>();
+            form.ShowDialog();
+        }
+
         private void ListComponentsToolStripMenuItem_Click(object sender, EventArgs e) {
             using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
 

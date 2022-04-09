@@ -50,12 +50,12 @@ namespace TypographyView
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(854, 42);
+            this.panel.Size = new System.Drawing.Size(933, 42);
             this.panel.TabIndex = 0;
             // 
             // buttonToPdf
             // 
-            this.buttonToPdf.Location = new System.Drawing.Point(730, 8);
+            this.buttonToPdf.Location = new System.Drawing.Point(809, 8);
             this.buttonToPdf.Name = "buttonToPdf";
             this.buttonToPdf.Size = new System.Drawing.Size(112, 23);
             this.buttonToPdf.TabIndex = 5;
@@ -109,7 +109,7 @@ namespace TypographyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 450);
+            this.ClientSize = new System.Drawing.Size(933, 450);
             this.Controls.Add(this.panel);
             this.Name = "FormReportOrders";
             this.Text = "Заказы";

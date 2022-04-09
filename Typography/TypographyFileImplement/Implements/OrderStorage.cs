@@ -23,7 +23,7 @@ namespace TypographyFileImplement.Implements {
                 return null;
             }
 
-            return source.Orders.Where(rec => rec.PrintedId.Equals(model.PrintedId) || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)).Select(CreateModel).ToList();
+            return source.Orders.Where(rec => rec.PrintedId.Equals(model.PrintedId) || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo && model.DateFrom.HasValue && model.DateTo.HasValue) || model.ClientId.HasValue && rec.ClientId == model.ClientId.Value).Select(CreateModel).ToList();
         }
 
         public OrderViewModel GetElement(OrderBindingModel model) {
@@ -74,6 +74,7 @@ namespace TypographyFileImplement.Implements {
 
         private static Order CreateModel(OrderBindingModel model, Order order) {
             order.PrintedId = model.PrintedId;
+            order.ClientId = model.ClientId.Value;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -87,6 +88,8 @@ namespace TypographyFileImplement.Implements {
             return new OrderViewModel {
                 Id = order.Id,
                 PrintedName = source.Printeds.FirstOrDefault(printed => printed.Id == order.PrintedId)?.PrintedName,
+                ClientFIO = source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId)?.ClientFIO,
+                ClientId = order.ClientId,
                 PrintedId = order.PrintedId,
                 Count = order.Count,
                 Sum = order.Sum,

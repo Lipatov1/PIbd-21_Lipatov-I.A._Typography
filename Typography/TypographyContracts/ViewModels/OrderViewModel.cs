@@ -9,6 +9,10 @@ namespace TypographyContracts.ViewModels {
 
         [DisplayName("Печатная продукция")]
         public string PrintedName { get; set; }
+        public int ClientId { get; set; }
+
+        [DisplayName("ФИО клиента")]
+        public string ClientFIO { get; set; }
 
         [DisplayName("Количество")]
         public int Count { get; set; }
