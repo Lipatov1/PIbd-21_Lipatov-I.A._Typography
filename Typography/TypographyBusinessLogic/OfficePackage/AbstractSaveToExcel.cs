@@ -92,18 +92,18 @@ namespace TypographyBusinessLogic.OfficePackage {
                 });
                 rowIndex++;
 
-                foreach (var product in pc.Components) {
+                foreach (var printed in pc.Components) {
                     InsertCellInWorksheet(new ExcelCellParameters {
                         ColumnName = "B",
                         RowIndex = rowIndex,
-                        Text = product.Item1,
+                        Text = printed.Item1,
                         StyleInfo = ExcelStyleInfoType.TextWithBroder
                     });
 
                     InsertCellInWorksheet(new ExcelCellParameters {
                         ColumnName = "C",
                         RowIndex = rowIndex,
-                        Text = product.Item2.ToString(),
+                        Text = printed.Item2.ToString(),
                         StyleInfo = ExcelStyleInfoType.TextWithBroder
                     });
                     rowIndex++;
