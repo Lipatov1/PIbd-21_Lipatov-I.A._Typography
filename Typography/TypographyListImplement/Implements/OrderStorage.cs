@@ -90,12 +90,17 @@ namespace TypographyListImplement.Implements {
             string clientFIO = null;
 
             foreach (Printed printed in source.Printeds) {
-                if (printed.Id == order.PrintedId) printedName = printed.PrintedName;
+                if (printed.Id == order.PrintedId) {
+                    printedName = printed.PrintedName;
+                    break;
+                }
             }
 
-            foreach (Client client in source.Clients)
-            {
-                if (client.Id == order.ClientId) clientFIO = client.ClientFIO;
+            foreach (Client client in source.Clients) {
+                if (client.Id == order.ClientId) {
+                    clientFIO = client.ClientFIO;
+                    break;
+                }
             }
 
             return new OrderViewModel {

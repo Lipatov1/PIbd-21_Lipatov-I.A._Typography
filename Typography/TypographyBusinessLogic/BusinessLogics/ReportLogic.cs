@@ -28,7 +28,6 @@ namespace TypographyBusinessLogic.BusinessLogics {
 
         // Получение списка компонент с указанием, в каких изделиях используются
         public List<ReportPrintedComponentViewModel> GetPrintedComponent() {
-            var components = _componentStorage.GetFullList();
             var printeds = _printedStorage.GetFullList();
             var list = new List<ReportPrintedComponentViewModel>();
 
