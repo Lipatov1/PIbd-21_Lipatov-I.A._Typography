@@ -21,10 +21,18 @@ namespace TypographyRestApi {
         public void ConfigureServices(IServiceCollection services) {
             services.AddTransient<IClientStorage, ClientStorage>();
             services.AddTransient<IClientLogic, ClientLogic>();
+
             services.AddTransient<IOrderStorage, OrderStorage>();
             services.AddTransient<IOrderLogic, OrderLogic>();
+
             services.AddTransient<IPrintedStorage, PrintedStorage>();
             services.AddTransient<IPrintedLogic, PrintedLogic>();
+
+            services.AddTransient<IWarehouseStorage, WarehouseStorage>();
+            services.AddTransient<IWarehouseLogic, WarehouseLogic>();
+
+            services.AddTransient<IComponentStorage, ComponentStorage>();
+            services.AddTransient<IComponentLogic, ComponentLogic>();
 
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c => {
