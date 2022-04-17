@@ -71,6 +71,35 @@ namespace TypographyView {
             form.ShowDialog();
         }
 
+        private void ListWarehouseToolStripMenuItem_Click(object sender, EventArgs e) {
+            using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
+
+            if (dialog.ShowDialog() == DialogResult.OK) {
+                _reportLogic.SaveWarehousesToWordFile(new ReportBindingModel { FileName = dialog.FileName });
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void WarehousComponentsToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormReportWarehouseComponent>();
+            form.ShowDialog();
+        }
+
+        private void OrdersByDateToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormReportOrdersByDate>();
+            form.ShowDialog();
+        }
+
+        private void WarehouseToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
+
+        private void ReplenishWarehouseToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormReplenishWarehouse>();
+            form.ShowDialog();
+        }
+
         private void ButtonCreateOrder_Click(object sender, EventArgs e) {
             var form = Program.Container.Resolve<FormCreateOrder>();
             form.ShowDialog();

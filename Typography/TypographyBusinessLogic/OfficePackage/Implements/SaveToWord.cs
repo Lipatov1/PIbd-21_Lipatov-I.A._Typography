@@ -3,11 +3,13 @@ using TypographyBusinessLogic.OfficePackage.HelperEnums;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml;
+using System.Collections.Generic;
 
 namespace TypographyBusinessLogic.OfficePackage.Implements {
     public class SaveToWord : AbstractSaveToWord {
         private WordprocessingDocument _wordDocument;
         private Body _docBody;
+        private Table _table;
 
         // Получение типа выравнивания
         private static JustificationValues GetJustificationValues(WordJustificationType type) {
@@ -99,6 +101,66 @@ namespace TypographyBusinessLogic.OfficePackage.Implements {
             _docBody.AppendChild(CreateSectionProperties());
             _wordDocument.MainDocumentPart.Document.Save();
             _wordDocument.Close();
+        }
+
+        protected override void CreateTable(List<string> tableHeaderInfo) {
+            _table = new Table();
+            TableProperties tblProps = new TableProperties(
+                new TableBorders(
+
+                new TopBorder {
+                    Val = new EnumValue<BorderValues>(BorderValues.Single),
+                    Size = 12
+                },
+
+                new BottomBorder {
+                    Val = new EnumValue<BorderValues>(BorderValues.Single),
+                    Size = 12
+                },
+
+                new LeftBorder {
+                    Val = new EnumValue<BorderValues>(BorderValues.Single),
+                    Size = 12
+                },
+
+                new RightBorder {
+                    Val = new EnumValue<BorderValues>(BorderValues.Single),
+                    Size = 12
+                },
+
+                new InsideHorizontalBorder {
+                    Val = new EnumValue<BorderValues>(BorderValues.Single),
+                    Size = 12
+                },
+
+                new InsideVerticalBorder {
+                    Val = new EnumValue<BorderValues>(BorderValues.Single),
+                    Size = 12
+                }));
+
+            _table.AppendChild<TableProperties>(tblProps);
+            _docBody.AppendChild(_table);
+            TableRow tableRowHeader = new TableRow();
+
+            foreach (string stringHeaderCell in tableHeaderInfo) {
+                TableCell cellHeader = new TableCell();
+                cellHeader.Append(new TableCellProperties(new TableCellWidth() { Type = TableWidthUnitValues.Auto }));
+                cellHeader.Append(new Paragraph(new Run(new Text(stringHeaderCell))));
+                tableRowHeader.Append(cellHeader);
+            }
+            _table.Append(tableRowHeader);
+        }
+
+        protected override void AddRowTable(List<string> tableRowInfo) {
+            TableRow tableRow = new TableRow();
+
+            foreach (string cell in tableRowInfo) {
+                TableCell tableCell = new TableCell();
+                tableCell.Append(new Paragraph(new Run(new Text(cell))));
+                tableRow.Append(tableCell);
+            }
+
+            _table.Append(tableRow);
         }
     }
 }
