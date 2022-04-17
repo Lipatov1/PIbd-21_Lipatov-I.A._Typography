@@ -23,7 +23,7 @@ namespace TypographyFileImplement.Implements {
                 return null;
             }
 
-            return source.Orders.Where(rec => rec.PrintedId.Equals(model.PrintedId) || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo && model.DateFrom.HasValue && model.DateTo.HasValue) || model.ClientId.HasValue && rec.ClientId == model.ClientId.Value).Select(CreateModel).ToList();
+            return source.Orders.Where(rec => rec.PrintedId.Equals(model.PrintedId) || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo && model.DateFrom.HasValue && model.DateTo.HasValue) || model.ClientId.HasValue && rec.ClientId == model.ClientId.Value || (model.SearchStatus.HasValue && model.SearchStatus.Value == rec.Status) || (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && model.Status == rec.Status)).Select(CreateModel).ToList();
         }
 
         public OrderViewModel GetElement(OrderBindingModel model) {
@@ -75,6 +75,7 @@ namespace TypographyFileImplement.Implements {
         private static Order CreateModel(OrderBindingModel model, Order order) {
             order.PrintedId = model.PrintedId;
             order.ClientId = model.ClientId.Value;
+            order.ImplementerId = model.ImplementerId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -89,6 +90,8 @@ namespace TypographyFileImplement.Implements {
                 Id = order.Id,
                 PrintedName = source.Printeds.FirstOrDefault(printed => printed.Id == order.PrintedId)?.PrintedName,
                 ClientFIO = source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId)?.ClientFIO,
+                ImplementerFIO = source.Implementers.FirstOrDefault(rec => rec.Id == order.ImplementerId)?.FIO,
+                ImplementerId = order.ImplementerId,
                 ClientId = order.ClientId,
                 PrintedId = order.PrintedId,
                 Count = order.Count,

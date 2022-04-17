@@ -13,6 +13,9 @@ namespace TypographyContracts.ViewModels {
 
         [DisplayName("ФИО клиента")]
         public string ClientFIO { get; set; }
+        public int? ImplementerId { get; set; }
+        [DisplayName("ФИО исполнителя")]
+        public string ImplementerFIO { get; set; }
 
         [DisplayName("Количество")]
         public int Count { get; set; }

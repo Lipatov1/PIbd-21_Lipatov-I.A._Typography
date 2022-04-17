@@ -14,17 +14,20 @@ namespace TypographyDatabaseImplement.Implements {
                 return context.Orders
                     .Include(rec => rec.Printed)
                     .Include(rec => rec.Client)
+                    .Include(rec => rec.Implementer)
                     .Select(rec => new OrderViewModel {
                         Id = rec.Id,
                         PrintedId = rec.PrintedId,
                         PrintedName = rec.Printed.PrintedName,
                         ClientId = rec.ClientId,
                         ClientFIO = rec.Client.ClientFIO,
+                        ImplementerId = rec.ImplementerId,
+                        ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status.ToString(),
                         DateCreate = rec.DateCreate,
-                        DateImplement = rec.DateImplement,
+                        DateImplement = rec.DateImplement
                     })
                 .ToList();
             }
@@ -39,13 +42,20 @@ namespace TypographyDatabaseImplement.Implements {
                 return context.Orders
                     .Include(rec => rec.Printed)
                     .Include(rec => rec.Client)
-                    .Where(rec => rec.PrintedId == model.PrintedId || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo && model.DateFrom.HasValue && model.DateTo.HasValue) || model.ClientId.HasValue && rec.ClientId == model.ClientId)
+                    .Include(rec => rec.Implementer)
+                    .Where(rec => rec.PrintedId == model.PrintedId
+                    || (rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo && model.DateFrom.HasValue && model.DateTo.HasValue)
+                    || (model.ClientId.HasValue && rec.ClientId == model.ClientId)
+                    || (model.SearchStatus.HasValue && model.SearchStatus.Value == rec.Status)
+                    || (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && model.Status == rec.Status))
                     .Select(rec => new OrderViewModel {
                         Id = rec.Id,
                         PrintedId = rec.PrintedId,
                         PrintedName = rec.Printed.PrintedName,
                         ClientId = rec.ClientId,
                         ClientFIO = rec.Client.ClientFIO,
+                        ImplementerId = rec.ImplementerId,
+                        ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : String.Empty,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status.ToString(),
@@ -65,6 +75,7 @@ namespace TypographyDatabaseImplement.Implements {
                 Order order = context.Orders
                     .Include(rec => rec.Printed)
                     .Include(rec => rec.Client)
+                    .Include(rec => rec.Implementer)
                     .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel {
@@ -73,6 +84,8 @@ namespace TypographyDatabaseImplement.Implements {
                     PrintedName = order.Printed.PrintedName,
                     ClientId = order.ClientId,
                     ClientFIO = order.Client.ClientFIO,
+                    ImplementerId = order.ImplementerId,
+                    ImplementerFIO = order.ImplementerId.HasValue ? order.Implementer.ImplementerFIO : String.Empty,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status.ToString(),
@@ -125,6 +138,7 @@ namespace TypographyDatabaseImplement.Implements {
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
             order.ClientId = model.ClientId.Value;
+            order.ImplementerId = model.ImplementerId;
             return order;
         }
     }

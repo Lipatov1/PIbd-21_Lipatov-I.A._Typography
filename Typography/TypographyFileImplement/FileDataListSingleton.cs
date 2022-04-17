@@ -14,17 +14,20 @@ namespace TypographyFileImplement {
         private readonly string OrderFileName = "Order.xml";
         private readonly string PrintedFileName = "Printed.xml";
         private readonly string ClientFileName = "Client.xml";
+        private readonly string ImplementerFileName = "Implementer.xml";
 
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Printed> Printeds { get; set; }
         public List<Client> Clients { get; set; }
+        public List<Implementer> Implementers { get; set; }
 
         private FileDataListSingleton() {
             Components = LoadComponents();
             Orders = LoadOrders();
             Printeds = LoadPrinteds();
             Clients = LoadClients();
+            Implementers = LoadImplementers();
         }
 
         public static FileDataListSingleton GetInstance() {
@@ -40,6 +43,7 @@ namespace TypographyFileImplement {
             SaveOrders();
             SavePrinteds();
             SaveClients();
+            SaveImplementers();
         }
 
         private List<Component> LoadComponents() {
@@ -71,6 +75,7 @@ namespace TypographyFileImplement {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         PrintedId = Convert.ToInt32(elem.Element("PrintedId").Value),
                         ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
+                        ImplementerId = Convert.ToInt32(elem.Element("ImplementerId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                         Status = (OrderStatus)Convert.ToInt32(elem.Element("Status").Value),
@@ -128,6 +133,26 @@ namespace TypographyFileImplement {
             return list;
         }
 
+        private List<Implementer> LoadImplementers() {
+            var list = new List<Implementer>();
+
+            if (File.Exists(ImplementerFileName)) {
+                XDocument xDocument = XDocument.Load(ImplementerFileName);
+                var xElements = xDocument.Root.Elements("Implementer").ToList();
+
+                foreach (var elem in xElements) {
+                    list.Add(new Implementer {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        FIO = elem.Element("FIO").Value,
+                        WorkingTime = Convert.ToInt32(elem.Element("WorkingTime").Value),
+                        PauseTime = Convert.ToInt32(elem.Element("PauseTime").Value)
+                    });
+                }
+            }
+
+            return list;
+        }
+
         private void SaveComponents() {
             if (Components != null) {
                 var xElement = new XElement("Components");
@@ -149,6 +174,7 @@ namespace TypographyFileImplement {
                         new XAttribute("Id", order.Id),
                         new XElement("PrintedId", order.PrintedId),
                         new XElement("ClientId", order.ClientId),
+                        new XElement("ImplementerId", order.ImplementerId),
                         new XElement("Count", order.Count),
                         new XElement("Sum", order.Sum),
                         new XElement("Status", (int)order.Status),
@@ -194,6 +220,23 @@ namespace TypographyFileImplement {
 
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(ClientFileName);
+            }
+        }
+
+        private void SaveImplementers() {
+            if (Implementers != null) {
+                var xElement = new XElement("Implementers");
+
+                foreach (var implementer in Implementers) {
+                    xElement.Add(new XElement("Implementer",
+                        new XAttribute("Id", implementer.Id),
+                        new XElement("FIO", implementer.FIO),
+                        new XElement("WorkingTime", implementer.WorkingTime),
+                        new XElement("PauseTime", implementer.PauseTime)));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ImplementerFileName);
             }
         }
     }

@@ -56,6 +56,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Status = OrderStatus.Выполняется,
                 PrintedId = element.PrintedId,
                 ClientId = element.ClientId,
+                ImplementerId = model.ImplementerId,
                 Count = element.Count,
                 Sum = element.Sum,
                 DateCreate = element.DateCreate,
@@ -82,6 +83,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 DateImplement = element.DateImplement,
                 PrintedId = element.PrintedId,
                 ClientId = element.ClientId,
+                ImplementerId = element.ImplementerId,
                 Count = element.Count,
                 Sum = element.Sum,
                 DateCreate = element.DateCreate
@@ -107,6 +109,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 DateImplement = element.DateImplement,
                 PrintedId = element.PrintedId,
                 ClientId = element.ClientId,
+                ImplementerId = element.ImplementerId,
                 Count = element.Count,
                 Sum = element.Sum,
                 DateCreate = element.DateCreate

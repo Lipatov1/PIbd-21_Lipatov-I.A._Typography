@@ -24,7 +24,7 @@ namespace TypographyListImplement.Implements {
 
             var result = new List<OrderViewModel>();
             foreach (var order in source.Orders) {
-                if (order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo) || model.ClientId.HasValue && order.ClientId == model.ClientId.Value) {
+                if (order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo) || (model.ClientId.HasValue && order.ClientId == model.ClientId.Value) || (model.SearchStatus.HasValue && model.SearchStatus.Value == order.Status) || (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && model.Status == order.Status)) {
                     result.Add(CreateModel(order));
                 }
             }
@@ -77,6 +77,7 @@ namespace TypographyListImplement.Implements {
         private static Order CreateModel(OrderBindingModel model, Order order) {
             order.PrintedId = model.PrintedId;
             order.ClientId = model.ClientId.Value;
+            order.ImplementerId = model.ImplementerId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -88,6 +89,7 @@ namespace TypographyListImplement.Implements {
         private OrderViewModel CreateModel(Order order) {
             string printedName = null;
             string clientFIO = null;
+            string implementerFIO = null;
 
             foreach (Printed printed in source.Printeds) {
                 if (printed.Id == order.PrintedId) {
@@ -103,12 +105,21 @@ namespace TypographyListImplement.Implements {
                 }
             }
 
+            foreach (var implementer in source.Implementers) {
+                if (implementer.Id == order.ImplementerId) {
+                    implementerFIO = implementer.FIO;
+                    break;
+                }
+            }
+
             return new OrderViewModel {
                 Id = order.Id,
                 PrintedId = order.PrintedId,
                 PrintedName = printedName,
                 ClientId = order.ClientId,
                 ClientFIO = clientFIO,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = implementerFIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status.ToString(),
