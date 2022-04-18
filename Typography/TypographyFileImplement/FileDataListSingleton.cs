@@ -13,6 +13,7 @@ namespace TypographyFileImplement {
         private readonly string ComponentFileName = "Component.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string PrintedFileName = "Printed.xml";
+        private readonly string WarehouseFileName = "Warehouse.xml";
         private readonly string ClientFileName = "Client.xml";
         private readonly string ImplementerFileName = "Implementer.xml";
 
@@ -21,11 +22,13 @@ namespace TypographyFileImplement {
         public List<Printed> Printeds { get; set; }
         public List<Client> Clients { get; set; }
         public List<Implementer> Implementers { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
 
         private FileDataListSingleton() {
             Components = LoadComponents();
             Orders = LoadOrders();
             Printeds = LoadPrinteds();
+            Warehouses = LoadWarehouses();
             Clients = LoadClients();
             Implementers = LoadImplementers();
         }
@@ -44,6 +47,7 @@ namespace TypographyFileImplement {
             SavePrinteds();
             SaveClients();
             SaveImplementers();
+            SaveWarehouses();
         }
 
         private List<Component> LoadComponents() {
@@ -153,6 +157,33 @@ namespace TypographyFileImplement {
             return list;
         }
 
+        private List<Warehouse> LoadWarehouses() {
+            var list = new List<Warehouse>();
+
+            if (File.Exists(WarehouseFileName)) {
+                XDocument xDocument = XDocument.Load(WarehouseFileName);
+                var xElements = xDocument.Root.Elements("Warehouse").ToList();
+
+                foreach (var warehouse in xElements) {
+                    var warehouseComponents = new Dictionary<int, int>();
+
+                    foreach (var component in warehouse.Element("WarehouseComponents").Elements("WarehouseComponent").ToList()) {
+                        warehouseComponents.Add(Convert.ToInt32(component.Element("Key").Value), Convert.ToInt32(component.Element("Value").Value));
+                    }
+
+                    list.Add(new Warehouse {
+                        Id = Convert.ToInt32(warehouse.Attribute("Id").Value),
+                        WarehouseName = warehouse.Element("WarehouseName").Value,
+                        WarehouseManagerFullName = warehouse.Element("WarehouseManagerFullName").Value,
+                        DateCreate = Convert.ToDateTime(warehouse.Element("DateCreate").Value),
+                        WarehouseComponents = warehouseComponents
+                    });
+                }
+            }
+
+            return list;
+        }
+
         private void SaveComponents() {
             if (Components != null) {
                 var xElement = new XElement("Components");
@@ -203,6 +234,32 @@ namespace TypographyFileImplement {
 
                 var xDocument = new XDocument(xElement);
                 xDocument.Save(PrintedFileName);
+            }
+        }
+
+        private void SaveWarehouses() {
+            if (Warehouses != null) {
+                var xElement = new XElement("Warehouses");
+
+                foreach (var warehouse in Warehouses) {
+                    var compElement = new XElement("WarehouseComponents");
+
+                    foreach (var component in warehouse.WarehouseComponents) {
+                        compElement.Add(new XElement("WarehouseComponent",
+                            new XElement("Key", component.Key),
+                            new XElement("Value", component.Value)));
+                    }
+
+                    xElement.Add(new XElement("Warehouse",
+                        new XAttribute("Id", warehouse.Id),
+                        new XElement("WarehouseName", warehouse.WarehouseName),
+                        new XElement("WarehouseManagerFullName", warehouse.WarehouseManagerFullName),
+                        new XElement("DateCreate", warehouse.DateCreate.ToString()),
+                        compElement));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(WarehouseFileName);
             }
         }
 
