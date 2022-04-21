@@ -152,31 +152,37 @@ namespace TypographyDatabaseImplement.Implements {
                 foreach (KeyValuePair<int, (string, int)> warehouseComponent in components) {
                     int requiredCount = warehouseComponent.Value.Item2 * printedsCount;
                     IEnumerable<WarehouseComponent> warehouseComponents = context.WarehouseComponents.Where(warehouse => warehouse.ComponentId == warehouseComponent.Key);
-                    
+
+                    int accessibleCount = warehouseComponents.Sum(warehouse => warehouse.Count);
+
+                    if (accessibleCount < requiredCount) {
+                        throw new Exception();
+                    }
+
                     foreach (WarehouseComponent component in warehouseComponents) {
                         if (component.Count <= requiredCount) {
                             requiredCount -= component.Count;
                             context.WarehouseComponents.Remove(component);
+                            context.SaveChanges();
                         }
                         else {
                             component.Count -= requiredCount;
+                            context.SaveChanges();
                             requiredCount = 0;
-                            break;
                         }
                     }
-                    
-                    if (requiredCount != 0) {
-                        throw new Exception("На складе недостаточно материалов");
+
+                    if (requiredCount == 0) {
+                        break;
                     }
                 }
                 
-                context.SaveChanges();
                 transaction.Commit();
                 return true;
             }
             catch {
                 transaction.Rollback();
-                throw;
+                return false;
             }
         }
     }
