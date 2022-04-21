@@ -51,14 +51,15 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 throw new Exception("Элемент не найден");
             }
 
-            if (!element.Status.Contains(OrderStatus.Принят.ToString())) {
-                throw new Exception("Не в статусе \"Принят\"");
-            }
-            if (!warehouseStorage.CheckRemove(printedStorage.GetElement(new PrintedBindingModel { Id = element.PrintedId }).PrintedComponents, element.Count)) {
-                throw new Exception("Недостаточно компонентов");
+            if (!element.Status.Contains(OrderStatus.Принят.ToString()) && !element.Status.Contains(OrderStatus.ТребуютсяМатериалы.ToString())) {
+                throw new Exception("Не в статусе \"Принят\" или \"Требуются материалы\"");
             }
 
-            orderStorage.Update(new OrderBindingModel {
+            if (element.ImplementerId.HasValue) {
+                throw new Exception("У заказа уже есть исполнитель");
+            }
+
+            var updateBindingModel = new OrderBindingModel {
                 Id = model.OrderId,
                 Status = OrderStatus.Выполняется,
                 PrintedId = element.PrintedId,
@@ -68,7 +69,14 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Sum = element.Sum,
                 DateCreate = element.DateCreate,
                 DateImplement = DateTime.Now
-            });
+            };
+
+            if (!warehouseStorage.CheckRemove(printedStorage.GetElement(new PrintedBindingModel { Id = element.PrintedId }).PrintedComponents, element.Count)) {
+                updateBindingModel.Status = OrderStatus.ТребуютсяМатериалы;
+                updateBindingModel.ImplementerId = null;
+            }
+
+            orderStorage.Update(updateBindingModel);
         }
 
         public void FinishOrder(ChangeStatusBindingModel model) {
