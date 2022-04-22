@@ -17,7 +17,7 @@ namespace TypographyView {
             _reportLogic = reportLogic;
             _workProcess = workProcess;
             _implementerLogic = implementerLogic;
-    }
+        }
 
         private void FormMain_Load(object sender, EventArgs e) {
             LoadData();
