@@ -55,10 +55,6 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 throw new Exception("Не в статусе \"Принят\" или \"Требуются материалы\"");
             }
 
-            if (element.ImplementerId.HasValue) {
-                throw new Exception("У заказа уже есть исполнитель");
-            }
-
             var updateBindingModel = new OrderBindingModel {
                 Id = model.OrderId,
                 Status = OrderStatus.Выполняется,
