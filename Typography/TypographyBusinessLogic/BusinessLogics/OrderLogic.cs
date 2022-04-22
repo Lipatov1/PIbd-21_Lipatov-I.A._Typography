@@ -69,7 +69,6 @@ namespace TypographyBusinessLogic.BusinessLogics {
 
             if (!warehouseStorage.CheckRemove(printedStorage.GetElement(new PrintedBindingModel { Id = element.PrintedId }).PrintedComponents, element.Count)) {
                 updateBindingModel.Status = OrderStatus.ТребуютсяМатериалы;
-                updateBindingModel.ImplementerId = null;
             }
 
             orderStorage.Update(updateBindingModel);

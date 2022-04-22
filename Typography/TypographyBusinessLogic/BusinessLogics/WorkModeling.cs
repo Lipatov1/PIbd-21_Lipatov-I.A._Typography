@@ -29,7 +29,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
         private async Task WorkerWorkAsync(ImplementerViewModel implementer, ConcurrentBag<OrderViewModel> orders) {
             var runOrders = await Task.Run(() => orderLogic.Read(new OrderBindingModel {
                 ImplementerId = implementer.Id,
-                SearchStatus = OrderStatus.Выполняется
+                Status = OrderStatus.Выполняется
             }));
 
             foreach (var order in runOrders) {
@@ -40,7 +40,7 @@ namespace TypographyBusinessLogic.BusinessLogics {
 
             var requiredOrders = await Task.Run(() => orderLogic.Read(new OrderBindingModel {
                 ImplementerId = implementer.Id,
-                SearchStatus = OrderStatus.ТребуютсяМатериалы
+                Status = OrderStatus.ТребуютсяМатериалы
             }));
 
             foreach (var order in requiredOrders) {
