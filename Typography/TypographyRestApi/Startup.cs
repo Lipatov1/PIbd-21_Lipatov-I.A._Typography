@@ -60,12 +60,12 @@ namespace TypographyRestApi {
             var mailSender = app.ApplicationServices.GetService<AbstractMailWorker>();
 
             mailSender.MailConfig(new MailConfigBindingModel {
-                MailLogin = Configuration?.GetSection("MailLogin")?.ToString(),
-                MailPassword = Configuration?.GetSection("MailPassword")?.ToString(),
-                SmtpClientHost = Configuration?.GetSection("SmtpClientHost")?.ToString(),
-                SmtpClientPort = Convert.ToInt32(Configuration?.GetSection("SmtpClientPort")?.ToString()),
-                PopHost = Configuration?.GetSection("PopHost")?.ToString(),
-                PopPort = Convert.ToInt32(Configuration?.GetSection("PopPort")?.ToString())
+                MailLogin = Configuration?.GetSection("MailLogin")?.Value.ToString(),
+                MailPassword = Configuration?.GetSection("MailPassword")?.Value.ToString(),
+                SmtpClientHost = Configuration?.GetSection("SmtpClientHost")?.Value.ToString(),
+                SmtpClientPort = Convert.ToInt32(Configuration?.GetSection("SmtpClientPort")?.Value.ToString()),
+                PopHost = Configuration?.GetSection("PopHost")?.Value.ToString(),
+                PopPort = Convert.ToInt32(Configuration?.GetSection("PopPort")?.Value.ToString())
             });
         }
     }
