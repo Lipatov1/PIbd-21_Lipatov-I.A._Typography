@@ -125,5 +125,13 @@ namespace TypographyClientApp.Controllers {
             PrintedViewModel prod = APIClient.GetRequest<PrintedViewModel>($"api/main/getprinted?printedId={printed}");
             return count * prod.Price;
         }
+
+        public IActionResult Messages() {
+            if (Program.Client == null) {
+                return Redirect("~/Home/Enter");
+            }
+
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>> ($"api/main/GetMessages?clientId={Program.Client.Id}"));
+        }
     }
 }

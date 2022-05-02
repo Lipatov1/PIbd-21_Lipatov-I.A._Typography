@@ -3,11 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 using TypographyDatabaseImplement.Implements;
 using TypographyBusinessLogic.BusinessLogics;
 using TypographyContracts.StoragesContracts;
+using TypographyBusinessLogic.MailWorker;
 using Microsoft.Extensions.Configuration;
+using TypographyContracts.BindingModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace TypographyRestApi {
     public class Startup {
@@ -25,6 +28,10 @@ namespace TypographyRestApi {
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IPrintedStorage, PrintedStorage>();
             services.AddTransient<IPrintedLogic, PrintedLogic>();
+            services.AddTransient<IMessageInfoStorage, MessageInfoStorage>();
+            services.AddTransient<IMessageInfoLogic, MessageInfoLogic>();
+
+            services.AddSingleton<AbstractMailWorker, MailKitWorker>();
 
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c => {
@@ -48,6 +55,17 @@ namespace TypographyRestApi {
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
+            });
+
+            var mailSender = app.ApplicationServices.GetService<AbstractMailWorker>();
+
+            mailSender.MailConfig(new MailConfigBindingModel {
+                MailLogin = Configuration?.GetSection("MailLogin")?.ToString(),
+                MailPassword = Configuration?.GetSection("MailPassword")?.ToString(),
+                SmtpClientHost = Configuration?.GetSection("SmtpClientHost")?.ToString(),
+                SmtpClientPort = Convert.ToInt32(Configuration?.GetSection("SmtpClientPort")?.ToString()),
+                PopHost = Configuration?.GetSection("PopHost")?.ToString(),
+                PopPort = Convert.ToInt32(Configuration?.GetSection("PopPort")?.ToString())
             });
         }
     }

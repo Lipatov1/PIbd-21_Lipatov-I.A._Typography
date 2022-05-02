@@ -15,6 +15,8 @@ namespace TypographyFileImplement {
         private readonly string PrintedFileName = "Printed.xml";
         private readonly string ClientFileName = "Client.xml";
         private readonly string ImplementerFileName = "Implementer.xml";
+        private readonly string MessageFileName = "Message.xml";
+        public List<MessageInfo> Messages { get; set; }
 
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
@@ -28,6 +30,7 @@ namespace TypographyFileImplement {
             Printeds = LoadPrinteds();
             Clients = LoadClients();
             Implementers = LoadImplementers();
+            Messages = LoadMessages();
         }
 
         public static FileDataListSingleton GetInstance() {
@@ -44,6 +47,7 @@ namespace TypographyFileImplement {
             SavePrinteds();
             SaveClients();
             SaveImplementers();
+            SaveMessages();
         }
 
         private List<Component> LoadComponents() {
@@ -153,6 +157,35 @@ namespace TypographyFileImplement {
             return list;
         }
 
+        private List<MessageInfo> LoadMessages() {
+            var list = new List<MessageInfo>();
+
+            if (File.Exists(MessageFileName)) {
+                var xDocument = XDocument.Load(MessageFileName);
+                var xElements = xDocument.Root.Elements("Message").ToList();
+                int? clientId;
+
+                foreach (var elem in xElements) {
+                    clientId = null;
+
+                    if (elem.Element("ClientId").Value != "") {
+                        clientId = Convert.ToInt32(elem.Element("ClientId").Value);
+                    }
+
+                    list.Add(new MessageInfo {
+                        MessageId = elem.Attribute("MessageId").Value,
+                        ClientId = clientId,
+                        Body = elem.Element("Body").Value,
+                        SenderName = elem.Element("SenderName").Value,
+                        Subject = elem.Element("Subject").Value,
+                        DateDelivery = DateTime.Parse(elem.Element("DateDelivery").Value)
+                    });
+                }
+            }
+
+            return list;
+        }
+
         private void SaveComponents() {
             if (Components != null) {
                 var xElement = new XElement("Components");
@@ -237,6 +270,25 @@ namespace TypographyFileImplement {
 
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(ImplementerFileName);
+            }
+        }
+
+        private void SaveMessages() {
+            if (Messages != null) {
+                var xElement = new XElement("Messages");
+
+                foreach (var message in Messages) {
+                    xElement.Add(new XElement("Message",
+                        new XAttribute("MessageId", message.MessageId),
+                        new XElement("ClientId", message.ClientId),
+                        new XElement("SenderName", message.SenderName),
+                        new XElement("Subject", message.Subject),
+                        new XElement("Body", message.Body),
+                        new XElement("DateDelivery", message.DateDelivery)));
+                }
+
+                var xDocument = new XDocument(xElement);
+                xDocument.Save(OrderFileName);
             }
         }
     }

@@ -111,5 +111,10 @@ namespace TypographyView {
         private void ButtonRef_Click(object sender, EventArgs e) {
             LoadData();
         }
+
+        private void messageToolStripMenuItem_Click(object sender, EventArgs e) {
+            var form = Program.Container.Resolve<FormMessages>();
+            form.ShowDialog();
+        }
     }
 }

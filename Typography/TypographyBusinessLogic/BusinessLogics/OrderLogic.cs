@@ -1,5 +1,6 @@
 ﻿using TypographyContracts.BusinessLogicsContracts;
 using TypographyContracts.StoragesContracts;
+using TypographyBusinessLogic.MailWorker;
 using TypographyContracts.BindingModels;
 using TypographyContracts.ViewModels;
 using System.Collections.Generic;
@@ -9,9 +10,14 @@ using System;
 namespace TypographyBusinessLogic.BusinessLogics {
     public class OrderLogic : IOrderLogic {
         private readonly IOrderStorage orderStorage;
+        private readonly IClientStorage clientStorage;
+        private readonly AbstractMailWorker mailWorker;
 
-        public OrderLogic(IOrderStorage _orderStorage) {
+        public OrderLogic(IOrderStorage _orderStorage, IClientStorage _clientStorage, AbstractMailWorker _mailWorker) {
             orderStorage = _orderStorage;
+            clientStorage = _clientStorage;
+            mailWorker = _mailWorker;
+
         }
 
         public List<OrderViewModel> Read(OrderBindingModel model) {
@@ -36,6 +42,12 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 DateCreate = DateTime.Now
             };
             orderStorage.Insert(order);
+
+            mailWorker.MailSendAsync(new MailSendInfoBindingModel {
+                MailAddress = clientStorage.GetElement(new ClientBindingModel { Id = model.ClientId })?.Login,
+                Subject = "Создан новый заказ",
+                Text = $"Дата заказа: {DateTime.Now}, сумма заказа: {model.Sum}"
+            });
         }
 
         public void TakeOrderInWork(ChangeStatusBindingModel model) {
@@ -61,6 +73,12 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Sum = element.Sum,
                 DateCreate = element.DateCreate,
                 DateImplement = DateTime.Now
+            });
+
+            mailWorker.MailSendAsync(new MailSendInfoBindingModel {
+                MailAddress = clientStorage.GetElement(new ClientBindingModel { Id = element.ClientId })?.Login,
+                Subject = $"Смена статуса заказа №{model.OrderId}",
+                Text = $"Статус изменен на: {OrderStatus.Выполняется}"
             });
         }
 
@@ -88,6 +106,12 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Sum = element.Sum,
                 DateCreate = element.DateCreate
             });
+
+            mailWorker.MailSendAsync(new MailSendInfoBindingModel {
+                MailAddress = clientStorage.GetElement(new ClientBindingModel { Id = element.ClientId })?.Login,
+                Subject = $"Смена статуса заказа №{model.OrderId}",
+                Text = $"Статус изменен на: {OrderStatus.Готов}"
+            });
         }
 
         public void DeliveryOrder(ChangeStatusBindingModel model) {
@@ -113,6 +137,12 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Count = element.Count,
                 Sum = element.Sum,
                 DateCreate = element.DateCreate
+            });
+
+            mailWorker.MailSendAsync(new MailSendInfoBindingModel {
+                MailAddress = clientStorage.GetElement(new ClientBindingModel { Id = element.ClientId })?.Login,
+                Subject = $"Смена статуса заказа №{model.OrderId}",
+                Text = $"Статус изменен на: {OrderStatus.Выдан}"
             });
         }
     }

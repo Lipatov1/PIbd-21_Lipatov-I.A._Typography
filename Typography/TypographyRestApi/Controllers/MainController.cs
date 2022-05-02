@@ -11,10 +11,12 @@ namespace TypographyRestApi.Controllers {
     public class MainController : ControllerBase {
         private readonly IOrderLogic _order;
         private readonly IPrintedLogic _printed;
+        private readonly IMessageInfoLogic _message;
 
-        public MainController(IOrderLogic order, IPrintedLogic printed) {
+        public MainController(IOrderLogic order, IPrintedLogic printed, IMessageInfoLogic message) {
             _order = order;
             _printed = printed;
+            _message = message;
         }
 
         [HttpGet]
@@ -25,6 +27,9 @@ namespace TypographyRestApi.Controllers {
 
         [HttpGet]
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
+
+        [HttpGet]
+        public List<MessageInfoViewModel> GetMessages(int clientId) => _message.Read(new MessageInfoBindingModel { ClientId = clientId });
 
         [HttpPost]
         public void CreateOrder(CreateOrderBindingModel model) => _order.CreateOrder(model);
