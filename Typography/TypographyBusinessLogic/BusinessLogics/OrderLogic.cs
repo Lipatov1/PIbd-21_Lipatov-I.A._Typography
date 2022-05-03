@@ -45,8 +45,8 @@ namespace TypographyBusinessLogic.BusinessLogics {
 
             mailWorker.MailSendAsync(new MailSendInfoBindingModel {
                 MailAddress = clientStorage.GetElement(new ClientBindingModel { Id = model.ClientId })?.Login,
-                Subject = "Создан новый заказ",
-                Text = $"Дата заказа: {DateTime.Now}, сумма заказа: {model.Sum}"
+                Subject = "Новый заказ",
+                Text = $"Заказ от {DateTime.Now} на сумму {model.Sum} принят."
             });
         }
 
