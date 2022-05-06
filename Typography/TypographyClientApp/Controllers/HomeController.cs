@@ -132,7 +132,6 @@ namespace TypographyClientApp.Controllers {
             }
 
             return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}"));
-
         }
     }
 }

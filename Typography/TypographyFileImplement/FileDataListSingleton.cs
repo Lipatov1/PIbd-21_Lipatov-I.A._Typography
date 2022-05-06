@@ -16,8 +16,8 @@ namespace TypographyFileImplement {
         private readonly string ClientFileName = "Client.xml";
         private readonly string ImplementerFileName = "Implementer.xml";
         private readonly string MessageFileName = "Message.xml";
-        public List<MessageInfo> Messages { get; set; }
 
+        public List<MessageInfo> Messages { get; set; }
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Printed> Printeds { get; set; }
