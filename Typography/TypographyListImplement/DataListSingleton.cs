@@ -9,12 +9,14 @@ namespace TypographyListImplement {
         public List<Printed> Printeds { get; set; }
         public List<Client> Clients { get; set; }
         public List<Implementer> Implementers { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
         public List<MessageInfo> Messages { get; set; }
 
         private DataListSingleton() {
             Components = new List<Component>();
             Orders = new List<Order>();
             Printeds = new List<Printed>();
+            Warehouses = new List<Warehouse>();
             Clients = new List<Client>();
             Implementers = new List<Implementer>();
             Messages = new List<MessageInfo>();

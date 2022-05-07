@@ -10,11 +10,15 @@ using System;
 namespace TypographyBusinessLogic.BusinessLogics {
     public class OrderLogic : IOrderLogic {
         private readonly IOrderStorage orderStorage;
+        private readonly IPrintedStorage printedStorage;
+        private readonly IWarehouseStorage warehouseStorage;
         private readonly IClientStorage clientStorage;
         private readonly AbstractMailWorker mailWorker;
 
-        public OrderLogic(IOrderStorage _orderStorage, IClientStorage _clientStorage, AbstractMailWorker _mailWorker) {
+        public OrderLogic(IOrderStorage _orderStorage, IPrintedStorage _printedStorage, IWarehouseStorage _warehouseStorage, IClientStorage _clientStorage, AbstractMailWorker _mailWorker) {
             orderStorage = _orderStorage;
+            printedStorage = _printedStorage;
+            warehouseStorage = _warehouseStorage;
             clientStorage = _clientStorage;
             mailWorker = _mailWorker;
 
@@ -59,11 +63,11 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 throw new Exception("Элемент не найден");
             }
 
-            if (!element.Status.Contains(OrderStatus.Принят.ToString())) {
-                throw new Exception("Не в статусе \"Принят\"");
+            if (!element.Status.Contains(OrderStatus.Принят.ToString()) && !element.Status.Contains(OrderStatus.ТребуютсяМатериалы.ToString())) {
+                throw new Exception("Не в статусе \"Принят\" или \"Требуются материалы\"");
             }
 
-            orderStorage.Update(new OrderBindingModel {
+            var updateBindingModel = new OrderBindingModel {
                 Id = model.OrderId,
                 Status = OrderStatus.Выполняется,
                 PrintedId = element.PrintedId,
@@ -73,7 +77,13 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Sum = element.Sum,
                 DateCreate = element.DateCreate,
                 DateImplement = DateTime.Now
-            });
+            };
+
+            if (!warehouseStorage.CheckRemove(printedStorage.GetElement(new PrintedBindingModel { Id = element.PrintedId }).PrintedComponents, element.Count)) {
+                updateBindingModel.Status = OrderStatus.ТребуютсяМатериалы;
+            }
+
+            orderStorage.Update(updateBindingModel);
 
             mailWorker.MailSendAsync(new MailSendInfoBindingModel {
                 MailAddress = clientStorage.GetElement(new ClientBindingModel { Id = element.ClientId })?.Login,
