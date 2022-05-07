@@ -35,9 +35,9 @@ namespace TypographyView
             this.componentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrintedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ImplementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WarehouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReplenishWarehouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImplementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListComponentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ComponentPrintedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();

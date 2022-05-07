@@ -3,6 +3,7 @@ using TypographyContracts.BindingModels;
 using TypographyContracts.ViewModels;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace TypographyRestApi.Controllers {
     [Route("api/[controller]/[action]")]
@@ -10,6 +11,7 @@ namespace TypographyRestApi.Controllers {
     public class ClientController : ControllerBase {
         private readonly IClientLogic clietLogic;
         private readonly IMessageInfoLogic messageInfoLogic;
+        private readonly int messagesOnPage = 2;
 
         public ClientController(IClientLogic clietLogic, IMessageInfoLogic messageInfoLogic) {
             this.clietLogic = clietLogic;
@@ -33,6 +35,15 @@ namespace TypographyRestApi.Controllers {
         public void UpdateData(ClientBindingModel model) => clietLogic.CreateOrUpdate(model);
 
         [HttpGet]
-        public List<MessageInfoViewModel> GetMessages(int clientId) => messageInfoLogic.Read(new MessageInfoBindingModel { ClientId = clientId });
+        public (List<MessageInfoViewModel>, bool) GetMessages(int clientId, int page) {
+            var list = messageInfoLogic.Read(new MessageInfoBindingModel {
+                ClientId = clientId,
+                ToSkip = (page - 1) * messagesOnPage,
+                ToTake = messagesOnPage + 1 }).ToList();
+
+            var hasNext = !(list.Count() <= messagesOnPage);
+
+            return (list.Take(messagesOnPage).ToList(), hasNext);
+        }
     }
 }
