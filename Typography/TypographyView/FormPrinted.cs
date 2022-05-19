@@ -21,16 +21,7 @@ namespace TypographyView {
         private void FormPrinted_Load(object sender, EventArgs e) {
             if (id.HasValue) {
                 try {
-                    PrintedViewModel view = _logic.Read(new PrintedBindingModel {
-                        Id = id.Value
-                    })?[0];
-
-                    if (view != null) {
-                        textBoxName.Text = view.PrintedName;
-                        textBoxPrice.Text = view.Price.ToString();
-                        PrintedComponents = view.PrintedComponents;
-                        LoadData();
-                    }
+                    Program.ConfigGrid(_logic.Read(null), dataGridView);
                 }
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

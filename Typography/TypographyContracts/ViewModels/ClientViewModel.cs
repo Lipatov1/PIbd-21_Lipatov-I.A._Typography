@@ -1,13 +1,13 @@
-﻿using System.ComponentModel;
+﻿using TypographyContracts.Attributes;
 
 namespace TypographyContracts.ViewModels {
     public class ClientViewModel {
         public int Id { get; set; }
-        [DisplayName("ФИО")]
+        [Column(title: "ФИО", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ClientFIO { get; set; }
-        [DisplayName("Логин")]
+        [Column(title: "Логин", width: 100)]
         public string Login { get; set; }
-        [DisplayName("Пароль")]
+        [Column(title: "Пароль", width: 100)]
         public string Password { get; set; }
     }
 }
