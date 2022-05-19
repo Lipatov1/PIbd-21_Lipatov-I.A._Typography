@@ -30,10 +30,10 @@ namespace TypographyContracts.ViewModels {
         [Column(title: "Статус", width: 100)]
         public string Status { get; set; }
 
-        [Column(title: "Дата создания", width: 100)]
+        [Column(title: "Дата создания", width: 100, format: "dd/MM/yyyy")]
         public DateTime DateCreate { get; set; }
 
-        [Column(title: "Дата выполнения", width: 100)]
+        [Column(title: "Дата выполнения", width: 100, format: "dd/MM/yyyy")]
         public DateTime? DateImplement { get; set; }
     }
 }

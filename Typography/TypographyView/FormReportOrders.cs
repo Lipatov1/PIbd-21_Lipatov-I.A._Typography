@@ -2,6 +2,7 @@
 using TypographyContracts.BindingModels;
 using Microsoft.Reporting.WinForms;
 using System.Windows.Forms;
+using System.Reflection;
 using System.IO;
 using System;
 
@@ -28,10 +29,11 @@ namespace TypographyView {
                 return;
             }
             try {
-                var dataSource = _logic.GetOrders(new ReportBindingModel {
+                MethodInfo method = _logic.GetType().GetMethod("GetOrders");
+                var dataSource = method.Invoke(_logic, new object[] { new ReportBindingModel {
                     DateFrom = dateTimePickerFrom.Value,
                     DateTo = dateTimePickerTo.Value
-                });
+                }});
 
                 var source = new ReportDataSource("DataSetOrders", dataSource);
                 reportViewer.LocalReport.DataSources.Clear();
@@ -54,11 +56,12 @@ namespace TypographyView {
             using var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" };
             if (dialog.ShowDialog() == DialogResult.OK) {
                 try {
-                    _logic.SaveOrdersToPdfFile(new ReportBindingModel {
+                    MethodInfo method = _logic.GetType().GetMethod("SaveOrdersToPdfFile");
+                    method.Invoke(_logic, new object[] { new ReportBindingModel {
                         FileName = dialog.FileName,
                         DateFrom = dateTimePickerFrom.Value,
                         DateTo = dateTimePickerTo.Value
-                    });
+                    } });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex) {

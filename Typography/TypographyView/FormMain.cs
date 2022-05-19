@@ -1,6 +1,7 @@
 ﻿using TypographyContracts.BusinessLogicsContracts;
 using TypographyContracts.BindingModels;
 using System.Windows.Forms;
+using System.Reflection;
 using System;
 using Unity;
 
@@ -58,9 +59,8 @@ namespace TypographyView {
             using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
 
             if (dialog.ShowDialog() == DialogResult.OK) {
-                _reportLogic.SavePrintedsToWordFile(new ReportBindingModel {
-                    FileName = dialog.FileName
-                });
+                MethodInfo method = _reportLogic.GetType().GetMethod("SavePrintedsToWordFile");
+                method.Invoke(_reportLogic, new object[] { new ReportBindingModel { FileName = dialog.FileName } });
                 MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -79,7 +79,8 @@ namespace TypographyView {
             using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
 
             if (dialog.ShowDialog() == DialogResult.OK) {
-                _reportLogic.SaveWarehousesToWordFile(new ReportBindingModel { FileName = dialog.FileName });
+                MethodInfo method = _reportLogic.GetType().GetMethod("SaveWarehousesToWordFile");
+                method.Invoke(_reportLogic, new object[] { new ReportBindingModel { FileName = dialog.FileName } });
                 MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

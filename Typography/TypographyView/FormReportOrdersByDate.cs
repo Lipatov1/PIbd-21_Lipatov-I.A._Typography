@@ -1,7 +1,10 @@
 ﻿using TypographyContracts.BusinessLogicsContracts;
 using TypographyContracts.BindingModels;
+using TypographyContracts.ViewModels;
 using Microsoft.Reporting.WinForms;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Reflection;
 using System.IO;
 using System;
 
@@ -28,9 +31,8 @@ namespace TypographyView {
             using var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" };
             if (dialog.ShowDialog() == DialogResult.OK) {
                 try {
-                    logic.SaveOrdersByDateToPdfFile(new ReportBindingModel {
-                        FileName = dialog.FileName
-                    });
+                    MethodInfo method = logic.GetType().GetMethod("SaveOrdersByDateToPdfFile");
+                    method.Invoke(logic, new object[] { new ReportBindingModel { FileName = dialog.FileName } });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex) {
@@ -41,7 +43,8 @@ namespace TypographyView {
 
         private void buttonMake_Click(object sender, EventArgs e) {
             try {
-                var dataSource = logic.GetOrdersByDate();
+                MethodInfo method = logic.GetType().GetMethod("GetOrdersByDate");
+                var dataSource = (List<ReportOrdersByDateViewModel>)method.Invoke(logic, null);
                 var source = new ReportDataSource("DataSetOrdersByDate", dataSource);
                 reportViewer.LocalReport.DataSources.Clear();
                 reportViewer.LocalReport.DataSources.Add(source);

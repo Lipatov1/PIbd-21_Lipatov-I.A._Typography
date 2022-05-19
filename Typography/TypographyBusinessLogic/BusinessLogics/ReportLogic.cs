@@ -5,6 +5,7 @@ using TypographyContracts.StoragesContracts;
 using TypographyContracts.BindingModels;
 using TypographyContracts.ViewModels;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using System;
 
@@ -118,37 +119,41 @@ namespace TypographyBusinessLogic.BusinessLogics {
 
         // Сохранение компонент с указаеним продуктов в файл-Excel
         public void SavePrintedComponentToExcelFile(ReportBindingModel model) {
+            MethodInfo method = GetType().GetMethod("GetPrintedComponent");
             _saveToExcel.CreateReport(new ExcelInfo {
                 FileName = model.FileName,
                 Title = "Список компонент",
-                PrintedComponents = GetPrintedComponent()
+                PrintedComponents = (List<ReportPrintedComponentViewModel>)method.Invoke(this, null)
             });
         }
 
         public void SaveWarehouseComponentToExcelFile(ReportBindingModel model) {
+            MethodInfo method = GetType().GetMethod("GetWarehouseComponent");
             _saveToExcel.CreateReportWarehouse(new ExcelInfo {
                 FileName = model.FileName,
                 Title = "Список компонент",
-                WarehouseComponents = GetWarehouseComponent()
+                WarehouseComponents = (List<ReportWarehouseComponentViewModel>)method.Invoke(this, null)
             });
         }
 
         // Сохранение заказов в файл-Pdf
         public void SaveOrdersToPdfFile(ReportBindingModel model) {
+            MethodInfo method = GetType().GetMethod("GetOrders");
             _saveToPdf.CreateDoc(new PdfInfo {
                 FileName = model.FileName,
                 Title = "Список заказов",
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
-                Orders = GetOrders(model)
+                Orders = (List<ReportOrdersViewModel>)method.Invoke(this, new object[] { model })
             });
         }
 
         public void SaveOrdersByDateToPdfFile(ReportBindingModel model) {
+            MethodInfo method = GetType().GetMethod("GetOrdersByDate");
             _saveToPdf.CreateDocOrdersByDate(new PdfInfo {
                 FileName = model.FileName,
                 Title = "Список заказов по датам",
-                OrdersByDate = GetOrdersByDate()
+                OrdersByDate = (List<ReportOrdersByDateViewModel>)method.Invoke(this, null)
             });
         }
     }

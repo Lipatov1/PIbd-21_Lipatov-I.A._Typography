@@ -1,6 +1,9 @@
 ﻿using TypographyContracts.BusinessLogicsContracts;
 using TypographyContracts.BindingModels;
+using TypographyContracts.ViewModels;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Reflection;
 using System;
 
 namespace TypographyView {
@@ -14,8 +17,9 @@ namespace TypographyView {
 
         private void FormReportPrintedComponents_Load(object sender, EventArgs e) {
             try {
-                var dict = _logic.GetPrintedComponent();
-      
+                MethodInfo method = _logic.GetType().GetMethod("GetPrintedComponent");
+                var dict = (List<ReportPrintedComponentViewModel>)method.Invoke(_logic, null);
+
                 if (dict != null) {
                     dataGridView.Rows.Clear();
 
@@ -41,9 +45,8 @@ namespace TypographyView {
 
             if (dialog.ShowDialog() == DialogResult.OK) {
                 try {
-                    _logic.SavePrintedComponentToExcelFile(new ReportBindingModel {
-                        FileName = dialog.FileName
-                    });
+                    MethodInfo method = _logic.GetType().GetMethod("SavePrintedComponentToExcelFile");
+                    method.Invoke(_logic, new object[] { new ReportBindingModel { FileName = dialog.FileName } });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex) {

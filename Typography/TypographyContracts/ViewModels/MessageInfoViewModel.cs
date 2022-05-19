@@ -8,7 +8,7 @@ namespace TypographyContracts.ViewModels {
         [Column(title: "Отправитель", width: 100)]
         public string SenderName { get; set; }
 
-        [Column(title: "Дата письма", width: 100)]
+        [Column(title: "Дата письма", width: 100, format: "dd/MM/yyyy")]
         public DateTime DateDelivery { get; set; }
 
         [Column(title: "Заголовок", width: 100)]
@@ -16,9 +16,9 @@ namespace TypographyContracts.ViewModels {
 
         [Column(title: "Текст", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string Body { get; set; }
-        [DisplayName("Ответ")]
+        [Column(title: "Ответ", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string Reply { get; set; }
-        [DisplayName("Прочитано")]
+        [Column(title: "Прочитано", width: 50)]
         public bool Read { get; set; }
     }
 }
