@@ -38,6 +38,33 @@ namespace TypographyBusinessLogic.BusinessLogics {
                 Thread.Sleep(implementer.PauseTime);
             }
 
+            var requiredOrders = await Task.Run(() => orderLogic.Read(new OrderBindingModel {
+                ImplementerId = implementer.Id,
+                Status = OrderStatus.ТребуютсяМатериалы
+            }));
+
+            foreach (var order in requiredOrders) {
+                orderLogic.TakeOrderInWork(new ChangeStatusBindingModel {
+                    OrderId = order.Id,
+                    ImplementerId = implementer.Id
+                });
+
+                OrderViewModel tempOrder = orderLogic.Read(new OrderBindingModel { Id = order.Id })?[0];
+
+                if (tempOrder.Status == OrderStatus.ТребуютсяМатериалы.ToString()) {
+                    continue;
+                }
+
+                Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
+
+                orderLogic.FinishOrder(new ChangeStatusBindingModel {
+                    OrderId = order.Id,
+                    ImplementerId = implementer.Id
+                });
+
+                Thread.Sleep(implementer.PauseTime);
+            }
+
             await Task.Run(() => {
                 while (!orders.IsEmpty) {
                     if (orders.TryTake(out OrderViewModel order)) {
@@ -45,6 +72,12 @@ namespace TypographyBusinessLogic.BusinessLogics {
                             OrderId = order.Id,
                             ImplementerId = implementer.Id
                         });
+
+                        OrderViewModel tempOrder = orderLogic.Read(new OrderBindingModel { Id = order.Id })?[0];
+
+                        if (tempOrder.Status == OrderStatus.ТребуютсяМатериалы.ToString()) {
+                            continue;
+                        }
 
                         Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
 

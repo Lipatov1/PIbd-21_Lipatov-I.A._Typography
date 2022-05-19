@@ -35,6 +35,8 @@ namespace TypographyView
             this.componentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrintedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WarehouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReplenishWarehouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImplementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListComponentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +48,13 @@ namespace TypographyView
             this.ButtonCreateOrder = new System.Windows.Forms.Button();
             this.ButtonIssuedOrder = new System.Windows.Forms.Button();
             this.ButtonRef = new System.Windows.Forms.Button();
+            this.DoWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImplementersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListWarehouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WarehousComponentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OrdersByDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.messageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -57,6 +66,7 @@ namespace TypographyView
             this.ReferencesToolStripMenuItem,
             this.ReportsToolStripMenuItem,
             this.DoWorkToolStripMenuItem,
+            this.ReplenishWarehouseToolStripMenuItem,
             this.messageToolStripMenuItem,
             this.CreateBackupToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -71,7 +81,8 @@ namespace TypographyView
             this.componentsToolStripMenuItem,
             this.PrintedsToolStripMenuItem,
             this.ClientsToolStripMenuItem,
-            this.ImplementersToolStripMenuItem});
+            this.ImplementersToolStripMenuItem,
+            this.WarehouseToolStripMenuItem});
             this.ReferencesToolStripMenuItem.Name = "ReferencesToolStripMenuItem";
             this.ReferencesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.ReferencesToolStripMenuItem.Text = "Справочники";
@@ -97,6 +108,20 @@ namespace TypographyView
             this.ClientsToolStripMenuItem.Text = "Клиенты";
             this.ClientsToolStripMenuItem.Click += new System.EventHandler(this.ClientsToolStripMenuItem_Click);
             // 
+            // WarehouseToolStripMenuItem
+            // 
+            this.WarehouseToolStripMenuItem.Name = "WarehouseToolStripMenuItem";
+            this.WarehouseToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.WarehouseToolStripMenuItem.Text = "Склады";
+            this.WarehouseToolStripMenuItem.Click += new System.EventHandler(this.WarehouseToolStripMenuItem_Click);
+            // 
+            // ReplenishWarehouseToolStripMenuItem
+            // 
+            this.ReplenishWarehouseToolStripMenuItem.Name = "ReplenishWarehouseToolStripMenuItem";
+            this.ReplenishWarehouseToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
+            this.ReplenishWarehouseToolStripMenuItem.Text = "Пополнение склада";
+            this.ReplenishWarehouseToolStripMenuItem.Click += new System.EventHandler(this.ReplenishWarehouseToolStripMenuItem_Click);
+            // 
             // ImplementersToolStripMenuItem
             // 
             this.ImplementersToolStripMenuItem.Name = "ImplementersToolStripMenuItem";
@@ -109,7 +134,10 @@ namespace TypographyView
             this.ReportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ListComponentsToolStripMenuItem,
             this.ComponentPrintedsToolStripMenuItem,
-            this.ListOrdersToolStripMenuItem});
+            this.ListOrdersToolStripMenuItem,
+            this.ListWarehouseToolStripMenuItem,
+            this.WarehousComponentsToolStripMenuItem,
+            this.OrdersByDateToolStripMenuItem});
             this.ReportsToolStripMenuItem.Name = "ReportsToolStripMenuItem";
             this.ReportsToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.ReportsToolStripMenuItem.Text = "Отчеты";
@@ -210,6 +238,27 @@ namespace TypographyView
             this.CreateBackupToolStripMenuItem.Text = "Создать бекап";
             this.CreateBackupToolStripMenuItem.Click += new System.EventHandler(this.CreateBackupToolStripMenuItem_Click);
             // 
+            // ListWarehouseToolStripMenuItem
+            // 
+            this.ListWarehouseToolStripMenuItem.Name = "ListWarehouseToolStripMenuItem";
+            this.ListWarehouseToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.ListWarehouseToolStripMenuItem.Text = "Список складов";
+            this.ListWarehouseToolStripMenuItem.Click += new System.EventHandler(this.ListWarehouseToolStripMenuItem_Click);
+            // 
+            // WarehousComponentsToolStripMenuItem
+            // 
+            this.WarehousComponentsToolStripMenuItem.Name = "WarehousComponentsToolStripMenuItem";
+            this.WarehousComponentsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.WarehousComponentsToolStripMenuItem.Text = "Склады по компонентам";
+            this.WarehousComponentsToolStripMenuItem.Click += new System.EventHandler(this.WarehousComponentsToolStripMenuItem_Click);
+            // 
+            // OrdersByDateToolStripMenuItem
+            // 
+            this.OrdersByDateToolStripMenuItem.Name = "OrdersByDateToolStripMenuItem";
+            this.OrdersByDateToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.OrdersByDateToolStripMenuItem.Text = "Список заказов по датам";
+            this.OrdersByDateToolStripMenuItem.Click += new System.EventHandler(this.OrdersByDateToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -249,6 +298,11 @@ namespace TypographyView
         private System.Windows.Forms.ToolStripMenuItem ClientsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DoWorkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImplementersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReplenishWarehouseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem WarehouseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ListWarehouseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem WarehousComponentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OrdersByDateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem messageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreateBackupToolStripMenuItem;
     }

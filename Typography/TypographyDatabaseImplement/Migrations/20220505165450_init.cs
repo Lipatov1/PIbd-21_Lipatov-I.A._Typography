@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TypographyDatabaseImplement.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,6 +36,21 @@ namespace TypographyDatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Implementers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImplementerFIO = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WorkingTime = table.Column<int>(type: "int", nullable: false),
+                    PauseTime = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Implementers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Printeds",
                 columns: table => new
                 {
@@ -50,6 +65,45 @@ namespace TypographyDatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Warehouses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WarehouseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WarehouseManagerFullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateCreate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Warehouses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MessageInfoes",
+                columns: table => new
+                {
+                    MessageId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: true),
+                    SenderName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateDelivery = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Reply = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Read = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MessageInfoes", x => x.MessageId);
+                    table.ForeignKey(
+                        name: "FK_MessageInfoes_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -57,6 +111,7 @@ namespace TypographyDatabaseImplement.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PrintedId = table.Column<int>(type: "int", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
+                    ImplementerId = table.Column<int>(type: "int", nullable: true),
                     Count = table.Column<int>(type: "int", nullable: false),
                     Sum = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -72,6 +127,12 @@ namespace TypographyDatabaseImplement.Migrations
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Implementers_ImplementerId",
+                        column: x => x.ImplementerId,
+                        principalTable: "Implementers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Orders_Printeds_PrintedId",
                         column: x => x.PrintedId,
@@ -107,10 +168,47 @@ namespace TypographyDatabaseImplement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WarehouseComponents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ComponentId = table.Column<int>(type: "int", nullable: false),
+                    WarehouseId = table.Column<int>(type: "int", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WarehouseComponents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WarehouseComponents_Components_ComponentId",
+                        column: x => x.ComponentId,
+                        principalTable: "Components",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WarehouseComponents_Warehouses_WarehouseId",
+                        column: x => x.WarehouseId,
+                        principalTable: "Warehouses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MessageInfoes_ClientId",
+                table: "MessageInfoes",
+                column: "ClientId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_ClientId",
                 table: "Orders",
                 column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_ImplementerId",
+                table: "Orders",
+                column: "ImplementerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_PrintedId",
@@ -126,10 +224,23 @@ namespace TypographyDatabaseImplement.Migrations
                 name: "IX_PrintedComponents_PrintedId",
                 table: "PrintedComponents",
                 column: "PrintedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WarehouseComponents_ComponentId",
+                table: "WarehouseComponents",
+                column: "ComponentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WarehouseComponents_WarehouseId",
+                table: "WarehouseComponents",
+                column: "WarehouseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "MessageInfoes");
+
             migrationBuilder.DropTable(
                 name: "Orders");
 
@@ -137,13 +248,22 @@ namespace TypographyDatabaseImplement.Migrations
                 name: "PrintedComponents");
 
             migrationBuilder.DropTable(
+                name: "WarehouseComponents");
+
+            migrationBuilder.DropTable(
                 name: "Clients");
+
+            migrationBuilder.DropTable(
+                name: "Implementers");
+
+            migrationBuilder.DropTable(
+                name: "Printeds");
 
             migrationBuilder.DropTable(
                 name: "Components");
 
             migrationBuilder.DropTable(
-                name: "Printeds");
+                name: "Warehouses");
         }
     }
 }

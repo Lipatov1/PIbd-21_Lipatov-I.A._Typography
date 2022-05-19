@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyRestApi", "Typogr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypographyClientApp", "TypographyClientApp\TypographyClientApp.csproj", "{7881B163-5F6F-4635-BE6F-491CDB18D4CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypographyWarehouseApp", "TypographyWarehouseApp\TypographyWarehouseApp.csproj", "{78FFEF1D-2AF7-4341-BC4A-50DE65007DED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{7881B163-5F6F-4635-BE6F-491CDB18D4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7881B163-5F6F-4635-BE6F-491CDB18D4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7881B163-5F6F-4635-BE6F-491CDB18D4CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78FFEF1D-2AF7-4341-BC4A-50DE65007DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78FFEF1D-2AF7-4341-BC4A-50DE65007DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78FFEF1D-2AF7-4341-BC4A-50DE65007DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78FFEF1D-2AF7-4341-BC4A-50DE65007DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,5 +16,9 @@ namespace TypographyContracts.ViewModels {
 
         [Column(title: "Текст", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string Body { get; set; }
+        [DisplayName("Ответ")]
+        public string Reply { get; set; }
+        [DisplayName("Прочитано")]
+        public bool Read { get; set; }
     }
 }
