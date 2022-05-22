@@ -1,24 +1,24 @@
-﻿using System.ComponentModel;
+﻿using TypographyContracts.Attributes;
 using System;
 
 namespace TypographyContracts.ViewModels {
     public class MessageInfoViewModel {
         public string MessageId { get; set; }
 
-        [DisplayName("Отправитель")]
+        [Column(title: "Отправитель", width: 100)]
         public string SenderName { get; set; }
 
-        [DisplayName("Дата письма")]
+        [Column(title: "Дата письма", width: 100, format: "dd/MM/yyyy")]
         public DateTime DateDelivery { get; set; }
 
-        [DisplayName("Заголовок")]
+        [Column(title: "Заголовок", width: 100)]
         public string Subject { get; set; }
 
-        [DisplayName("Текст")]
+        [Column(title: "Текст", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string Body { get; set; }
-        [DisplayName("Ответ")]
+        [Column(title: "Ответ", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string Reply { get; set; }
-        [DisplayName("Прочитано")]
+        [Column(title: "Прочитано", width: 50)]
         public bool Read { get; set; }
     }
 }

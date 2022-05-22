@@ -1,6 +1,9 @@
 ﻿using TypographyContracts.BusinessLogicsContracts;
 using TypographyContracts.BindingModels;
+using TypographyContracts.ViewModels;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Reflection;
 using System;
 
 namespace TypographyView {
@@ -17,10 +20,8 @@ namespace TypographyView {
 
             if (dialog.ShowDialog() == DialogResult.OK) {
                 try {
-                    logic.SaveWarehouseComponentToExcelFile(new ReportBindingModel {
-                        FileName = dialog.FileName
-                    });
-
+                    MethodInfo method = logic.GetType().GetMethod("SaveWarehouseComponentToExcelFile");
+                    method.Invoke(logic, new object[] { new ReportBindingModel { FileName = dialog.FileName } });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex) {
@@ -31,7 +32,8 @@ namespace TypographyView {
 
         private void FormWarehouseComponent_Load(object sender, EventArgs e) {
             try {
-                var dict = logic.GetWarehouseComponent();
+                MethodInfo method = logic.GetType().GetMethod("GetWarehouseComponent");
+                List<ReportWarehouseComponentViewModel> dict = (List<ReportWarehouseComponentViewModel>)method.Invoke(logic, null);
 
                 if (dict != null) {
                     dataGridView.Rows.Clear();

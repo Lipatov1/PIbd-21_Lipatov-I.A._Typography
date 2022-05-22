@@ -40,11 +40,7 @@ namespace TypographyView {
                     buttonNext.Enabled = false;
                 }
 
-                if (list != null) {
-                    dataGridViewMessages.DataSource = list;
-                    dataGridViewMessages.Columns[0].Visible = false;
-                    dataGridViewMessages.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
+                Program.ConfigGrid(list, dataGridViewMessages);
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

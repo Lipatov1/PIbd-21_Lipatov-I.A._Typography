@@ -1,16 +1,16 @@
-﻿using System.ComponentModel;
+﻿using TypographyContracts.Attributes;
 
 namespace TypographyContracts.ViewModels {
     public class ImplementerViewModel {
         public int Id { get; set; }
 
-        [DisplayName("ФИО исполнителя")]
+        [Column(title: "ФИО исполнителя", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string FIO { get; set; }
 
-        [DisplayName("Время работы исполнителя")]
+        [Column(title: "Время работы исполнителя", width: 150)]
         public int WorkingTime { get; set; }
 
-        [DisplayName("Время отдыха исполнителя")]
+        [Column(title: "Время отдыха исполнителя", width: 150)]
         public int PauseTime { get; set; }
     }
 }
